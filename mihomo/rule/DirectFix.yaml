@@ -1,0 +1,8 @@
+payload:
+  - DOMAIN-SUFFIX,zbiptv.com
+  - DOMAIN-SUFFIX,52kukan.net
+  - DOMAIN-SUFFIX,7xdy.com
+  - DOMAIN-KEYWORD,galaxyappstore
+  - DOMAIN-SUFFIX,ntp.org
+  - DST-PORT,123
+    
