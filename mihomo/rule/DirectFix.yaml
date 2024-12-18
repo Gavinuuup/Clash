@@ -1,8 +1,44 @@
 payload:
   - DOMAIN-SUFFIX,hhiec.com
-  - DOMAIN-SUFFIX,zbiptv.com
-  - DOMAIN-SUFFIX,52kukan.net
-  - DOMAIN-SUFFIX,7xdy.com
   - DOMAIN-KEYWORD,galaxyappstore
+# ntp 服务
   - DOMAIN-SUFFIX,ntp.org
   - DST-PORT,123
+# 收集 iptv 播放源地址
+  - DOMAIN-SUFFIX,7xdy.com
+  - DOMAIN-SUFFIX,zbiptv.com
+  - DOMAIN-SUFFIX,52kukan.net
+  - DOMAIN-SUFFIX,bbffvip.com
+  - DOMAIN-SUFFIX,thefilehosting.com
+  - DOMAIN-SUFFIX,xdrig.com
+  - DOMAIN-SUFFIX,wolongzy.cc
+  - DOMAIN-SUFFIX,q19jcg.com
+  - DOMAIN-SUFFIX,keke7.app
+  - DOMAIN-SUFFIX,8utdtcq.com
+  - DOMAIN-SUFFIX,subaibaiys.com
+  - DOMAIN-SUFFIX,cfkj86.com
+  - DOMAIN-SUFFIX,ijujitv.cc
+  - DOMAIN-SUFFIX,xingchenwu.com
+  - DOMAIN-SUFFIX,4kvm.org
+  - DOMAIN-SUFFIX,nmvod.cn
+  - DOMAIN-SUFFIX,gxfiber.com
+  - DOMAIN-SUFFIX,pxbvtypflexj.com
+  - DOMAIN-SUFFIX,4k4k.live
+  - DOMAIN-SUFFIX,mp4br.com
+  - DOMAIN-SUFFIX,heimuer.xyz
+  - DOMAIN-SUFFIX,348z.com
+  - DOMAIN-SUFFIX,ggdy.net
+  - DOMAIN-SUFFIX,yanaifei.tv
+  - DOMAIN-SUFFIX,aikanbot.com
+  - DOMAIN-SUFFIX,wwstcs.com
+  - DOMAIN-SUFFIX,mp4be.com
+  - DOMAIN-SUFFIX,rebozj.pro
+  - DOMAIN-SUFFIX,qiyoudy1.com
+  - DOMAIN-SUFFIX,rinhome.com
+  - DOMAIN-SUFFIX,saohuo.vip
+  - DOMAIN-SUFFIX,ffzyapi.com
+  - DOMAIN-SUFFIX,czzy.site
+  - DOMAIN-SUFFIX,cz01.tv
+  - DOMAIN-SUFFIX,xpgtv.net
+  - DOMAIN-SUFFIX,999888987.xyz
+  - DOMAIN-SUFFIX,rebozj.pro
