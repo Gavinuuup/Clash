@@ -7,3 +7,5 @@ payload:
 # ntp 服务
   - DOMAIN-SUFFIX,ntp.org
   - DST-PORT,123
+#
+  - DOMAIN-SUFFIX,reflix.top
