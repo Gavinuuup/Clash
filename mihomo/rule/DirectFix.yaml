@@ -1,12 +1,13 @@
 payload:
-  - DOMAIN-SUFFIX,hhiec.com
-  - DOMAIN-SUFFIX,zbiptv.com
-  - DOMAIN-SUFFIX,52kukan.net
-  - DOMAIN-SUFFIX,7xdy.com
-  - DOMAIN-KEYWORD,galaxyappstore
-  - DOMAIN-SUFFIX,41319.life
+    - +.youtube
+    - +.hhiec.com
+    - +.zbiptv.com
+    - +.52kukan.net
+    - +.7xdy.com
+    - +.galaxyappstore
+    - +.41319.life
 # ntp 服务
-  - DOMAIN-SUFFIX,ntp.org
-  - DST-PORT,123
+    - +.ntp.org
+    - DST-PORT,123
 #
-  - DOMAIN-SUFFIX,reflix.top
+    - +.reflix.top
