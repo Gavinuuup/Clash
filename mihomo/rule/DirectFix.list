@@ -1,8 +1,12 @@
 # 直连补充
-DOMAIN-SUFFIX,zbiptv.com
-DOMAIN-SUFFIX,52kukan.net
-DOMAIN-SUFFIX,7xdy.com
-DOMAIN-KEYWORD,galaxyappstore
-DOMAIN-SUFFIX,ntp.org
++.hhiec.com
++.zbiptv.com
++.52kukan.net
++.7xdy.com
++.galaxyappstore
++.41319.life
+# ntp 服务
++.ntp.org
 DST-PORT,123
-DOMAIN-SUFFIX,hhiec.com
+#
++.reflix.top
