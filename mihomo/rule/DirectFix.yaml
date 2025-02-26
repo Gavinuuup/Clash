@@ -17,7 +17,6 @@ payload:
 # 游侠
   - DOMAIN-SUFFIX,llren.com
   - DOMAIN-SUFFIX,youxia.net
-  - DOMAIN-SUFFIX,youxi233.com
-  - DOMAIN-SUFFIX,youxi299.com
+  - DOMAIN-KEYWORD,youxi
 #
   - DOMAIN-KEYWORD,ysgc
