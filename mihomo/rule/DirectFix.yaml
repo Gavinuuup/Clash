@@ -21,3 +21,7 @@ payload:
 # 影视工厂
   - DOMAIN-KEYWORD,ysgc
   - DOMAIN-SUFFIX,tjihua.com
+# keke1
+  - DOMAIN-SUFFIX,keke1.app
+  - DOMAIN-SUFFIX,kekys.com
+  - DOMAIN-SUFFIX,play-cdn3.com
