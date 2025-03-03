@@ -25,3 +25,5 @@ payload:
   - DOMAIN-SUFFIX,keke1.app
   - DOMAIN-SUFFIX,kekys.com
   - DOMAIN-SUFFIX,play-cdn3.com
+# lucky
+  - DOMAIN-SUFFIX,lucky.gd
