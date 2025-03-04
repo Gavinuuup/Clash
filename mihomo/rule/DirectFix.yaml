@@ -4,7 +4,6 @@ payload:
   - DOMAIN-SUFFIX,zbiptv.com
   - DOMAIN-SUFFIX,52kukan.net
   - DOMAIN-SUFFIX,7xdy.com
-  - DOMAIN-KEYWORD,galaxyappstore
   - DOMAIN-SUFFIX,qqarc.com
 # ntp 服务
   - DOMAIN-SUFFIX,ntp.org
@@ -31,3 +30,11 @@ payload:
   - DOMAIN-SUFFIX,khkj.xyz
 # 123
   - DOMAIN-SUFFIX,beizi.biz
+# via
+  - DOMAIN-SUFFIX,viayoo.com
+# 三星
+  - DOMAIN-KEYWORD,galaxyappstore
+  - DOMAIN-SUFFIX,samsungapps.com
+# 适配音乐
+  - DOMAIN-SUFFIX,fxh1.com
+  - DOMAIN-SUFFIX,90nw.com
