@@ -38,3 +38,5 @@ payload:
 # 适配音乐
   - DOMAIN-SUFFIX,fxh1.com
   - DOMAIN-SUFFIX,90nw.com
+# 555电影
+  - DOMAIN-KEYWORD,ryplay
