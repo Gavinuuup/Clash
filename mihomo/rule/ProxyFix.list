@@ -1,5 +1,8 @@
 # 代理补充(qichiyu)
 
+# vaultwarden 图标服务器
+- DOMAIN-SUFFIX,favicon.ico
+
 # 域名关键字匹配
 DOMAIN-KEYWORD,1e100
 DOMAIN-KEYWORD,adultiptv
