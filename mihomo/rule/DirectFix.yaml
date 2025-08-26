@@ -46,3 +46,5 @@ payload:
   - DOMAIN-KEYWORD,91acg
 # 淘宝游戏
   - DOMAIN-KEYWORD,galsanggame
+# hinas
+  - DOMAIN-SUFFIX,ecoo.top
