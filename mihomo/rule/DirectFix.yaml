@@ -44,3 +44,5 @@ payload:
   - DOMAIN,r.inews.qq.com
 # 涩涩动漫
   - DOMAIN-KEYWORD,91acg
+# 淘宝游戏
+  - DOMAIN-KEYWORD,galsanggame
