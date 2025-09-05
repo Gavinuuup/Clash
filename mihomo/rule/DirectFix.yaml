@@ -50,3 +50,21 @@ payload:
   - DOMAIN-SUFFIX,ecoo.top
 # 念音网
   - DOMAIN-SUFFIX,nianyin.com
+# 点播源
+  - DOMAIN-SUFFIX,4kfm.com
+  - DOMAIN-SUFFIX,leijing.xyz
+  - DOMAIN-SUFFIX,haimian.eu.org
+  - DOMAIN-SUFFIX,miaosou.fun
+  - DOMAIN-SUFFIX,hunhepan.com
+  - DOMAIN-SUFFIX,qkpanso.com
+  - DOMAIN-SUFFIX,qianfan.app
+  - DOMAIN-SUFFIX,pikasoo.top
+  - DOMAIN-SUFFIX,yiso.fun
+  - DOMAIN-SUFFIX,4kfox.com
+  - DOMAIN-SUFFIX,seedhub.cc
+  - DOMAIN,80sgod.dnscf.vip
+  - DOMAIN-KEYWORD,jianpianupdate
+  - DOMAIN-KEYWORD,yunso
+  - DOMAIN-KEYWORD,suoniapi
+  - DOMAIN-KEYWORD,tianyiso
+  - DOMAIN-KEYWORD,yinruifei
