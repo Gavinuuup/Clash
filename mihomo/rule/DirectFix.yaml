@@ -72,3 +72,7 @@ payload:
   - DOMAIN-KEYWORD,wogg
   - DOMAIN-KEYWORD,cdnlz22
   - DOMAIN-KEYWORD,80sgod
+# 铜钟音乐
+  - DOMAIN-SUFFIX,whamon.com
+# 小众软件
+  - DOMAIN-SUFFIX,appinn.net
