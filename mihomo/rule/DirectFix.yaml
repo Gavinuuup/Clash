@@ -76,3 +76,5 @@ payload:
   - DOMAIN-SUFFIX,whamon.com
 # 小众软件
   - DOMAIN-SUFFIX,appinn.net
+# 支付宝commerce.yundps.com
+  - DOMAIN-KEYWORD,yundps
