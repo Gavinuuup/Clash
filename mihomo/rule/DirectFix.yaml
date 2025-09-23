@@ -82,3 +82,5 @@ payload:
   - DOMAIN-KEYWORD,yundps
 # 好学文苑网
   - DOMAIN-SUFFIX,hxw.red
+# Xcloudv音乐
+  - DOMAIN-KEYWORD,xcloudv
