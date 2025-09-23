@@ -85,4 +85,4 @@ payload:
 # Xcloudv音乐
   - DOMAIN-KEYWORD,xcloudv
 # 音乐魔石
-  - DOMAIN-SUFFIX,yym4.com
+  - DOMAIN-KEYWORD,yym4
