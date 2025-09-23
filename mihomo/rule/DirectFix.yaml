@@ -84,3 +84,5 @@ payload:
   - DOMAIN-SUFFIX,hxw.red
 # Xcloudv音乐
   - DOMAIN-KEYWORD,xcloudv
+# 音乐魔石
+  - DOMAIN-SUFFIX,yym4.com
