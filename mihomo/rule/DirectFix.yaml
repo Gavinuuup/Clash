@@ -66,6 +66,9 @@ payload:
   - DOMAIN-SUFFIX,libvio.mov
   - DOMAIN-SUFFIX,wsrv.nl
   - DOMAIN-SUFFIX,cmliussss.net
+  - DOMAIN-SUFFIX,ikunzyapi.com
+  - DOMAIN-SUFFIX,ffzyapi.com
+  - DOMAIN-SUFFIX,imgwolong.com
   - DOMAIN-KEYWORD,jianpianupdate
   - DOMAIN-KEYWORD,yunso
   - DOMAIN-KEYWORD,suoniapi
@@ -76,6 +79,9 @@ payload:
   - DOMAIN-KEYWORD,80sgod
   - DOMAIN-KEYWORD,rrcdnbf2
   - DOMAIN-KEYWORD,tyyswimg
+  - DOMAIN-KEYWORD,hongniuzy
+  - DOMAIN-KEYWORD,ffzy-play
+  - DOMAIN-KEYWORD,wlcdn
 # 铜钟音乐
   - DOMAIN-SUFFIX,whamon.com
 # 小众软件
