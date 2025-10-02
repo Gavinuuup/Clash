@@ -51,6 +51,9 @@ payload:
   - DOMAIN-SUFFIX,ecoo.top
 # 念音网
   - DOMAIN-SUFFIX,nianyin.com
+# iptv 订阅
+  - DOMAIN-SUFFIX,ottiptv.cc
+  - DOMAIN-SUFFIX,iill.top
 # 点播源
   - DOMAIN-SUFFIX,4kfm.com
   - DOMAIN-SUFFIX,leijing.xyz
@@ -82,7 +85,6 @@ payload:
   - DOMAIN-KEYWORD,hongniuzy
   - DOMAIN-KEYWORD,ffzy-play
   - DOMAIN-KEYWORD,wlcdn
-  - DOMAIN-KEYWORD,ottiptv
 # 铜钟音乐
   - DOMAIN-SUFFIX,whamon.com
 # 小众软件
