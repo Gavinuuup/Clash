@@ -89,7 +89,7 @@ payload:
   - DOMAIN-SUFFIX,whamon.com
 # 小众软件
   - DOMAIN-SUFFIX,appinn.net
-# 支付宝commerce.yundps.com
+# 支付宝 commerce.yundps.com
   - DOMAIN-KEYWORD,yundps
 # 好学文苑网
   - DOMAIN-SUFFIX,hxw.red
