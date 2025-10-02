@@ -51,6 +51,9 @@ DST-PORT,123
 +.ecoo.top
 # 念音网
 +.nianyin.com
+# iptv 订阅
++.ottiptv.cc
++.iill.top
 # 点播源
 +.4kfm.com
 +.leijing.xyz
@@ -82,12 +85,11 @@ DST-PORT,123
 +.hongniuzy
 +.ffzy-play
 +.wlcdn
-+.ottiptv
 # 铜钟音乐
 +.whamon.com
 # 小众软件
 +.appinn.net
-# 支付宝commerce.yundps.com
+# 支付宝 commerce.yundps.com
 +.yundps
 # 好学文苑网
 +.hxw.red
