@@ -72,6 +72,11 @@ payload:
   - DOMAIN-SUFFIX,ikunzyapi.com
   - DOMAIN-SUFFIX,ffzyapi.com
   - DOMAIN-SUFFIX,imgwolong.com
+  - DOMAIN-SUFFIX,xpgtv.com
+  - DOMAIN-SUFFIX,xmflv.com
+  - DOMAIN-SUFFIX,bingdou.vip
+  - DOMAIN-SUFFIX,*xiaopan.fun
+  - DOMAIN-SUFFIX,miqk.cc
   - DOMAIN-KEYWORD,jianpianupdate
   - DOMAIN-KEYWORD,yunso
   - DOMAIN-KEYWORD,suoniapi
