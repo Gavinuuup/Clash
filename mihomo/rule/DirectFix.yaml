@@ -103,4 +103,5 @@ payload:
 # 音乐魔石
   - DOMAIN-KEYWORD,yym4
 # 机场
-  - DOMAIN-KEYWORD,yuetoto.net
+  - DOMAIN-SUFFIX,yuetoto.net
+  - DOMAIN-SUFFIX,xueshan.shop
