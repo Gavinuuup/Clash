@@ -78,6 +78,24 @@ payload:
   - DOMAIN-SUFFIX,2xiaopan.fun
   - DOMAIN-SUFFIX,miqk.cc
   - DOMAIN-SUFFIX,360zyx.vip
+  - DOMAIN-SUFFIX,zjkrmv.vip
+  - DOMAIN-SUFFIX,cloudflare88.eu.org
+  - DOMAIN-SUFFIX,qyjzlh.com
+  - DOMAIN-SUFFIX,lbys.app
+  - DOMAIN-SUFFIX,auete.com
+  - DOMAIN-SUFFIX,lzzypic.com
+  - DOMAIN-SUFFIX,yydsys.top
+  - DOMAIN-SUFFIX,aside.top
+  - DOMAIN-SUFFIX,bttwo.me
+  - DOMAIN-SUFFIX,dmmiku.com
+  - DOMAIN-SUFFIX,cz01.org
+  - DOMAIN-SUFFIX,hkybqufgh.com
+  - DOMAIN-SUFFIX,libvio.link
+  - DOMAIN-SUFFIX,lzpanx.com
+  - DOMAIN-SUFFIX,misoso.cc
+  - DOMAIN-SUFFIX,pansearch.me
+  - DOMAIN-SUFFIX,xb6v.com
+  - DOMAIN-SUFFIX,ysmfyl.top
   - DOMAIN-KEYWORD,jianpianupdate
   - DOMAIN-KEYWORD,yunso
   - DOMAIN-KEYWORD,suoniapi
@@ -94,6 +112,8 @@ payload:
   - DOMAIN-KEYWORD,play-cdn
   - DOMAIN-KEYWORD,modujx
   - DOMAIN-KEYWORD,ffzyread
+  - DOMAIN-KEYWORD,lz-cdn
+  - DOMAIN-KEYWORD,ffzy-online
 # 铜钟音乐
   - DOMAIN-SUFFIX,whamon.com
 # 小众软件
