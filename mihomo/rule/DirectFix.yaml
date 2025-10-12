@@ -137,3 +137,5 @@ payload:
   - DOMAIN-KEYWORD,yym4
 # 机场
   - DOMAIN-SUFFIX,yuetoto.net
+# 直播源论坛  
+  - DOMAIN-SUFFIX,livecodes.vip
