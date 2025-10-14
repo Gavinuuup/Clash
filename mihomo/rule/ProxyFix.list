@@ -1,0 +1,39 @@
+# 代理补充(qichiyu)
+
+# 域名关键字匹配
+DOMAIN-KEYWORD,1e100
+DOMAIN-KEYWORD,adultiptv
+DOMAIN-KEYWORD,mycamtv
+
+# 肥羊
+DOMAIN,bptv.freetv.top
+# 其他
+DOMAIN-SUFFIX,hcfy.ai
+DOMAIN-SUFFIX,onlyfans.com
+DOMAIN-SUFFIX,fanart.tv
+
+# 国外DNS
+DOMAIN-SUFFIX,dns.google
+DOMAIN-SUFFIX,1dot1dot1dot1.cloudflare-dns.com
+DOMAIN-SUFFIX,dot.sb
+DOMAIN-SUFFIX,dns.umbrella.com
+DOMAIN-SUFFIX,dns.quad9.net
+DOMAIN-SUFFIX,dns.google
+DOMAIN-SUFFIX,cloudflare-dns.com
+DOMAIN-SUFFIX,doh.dns.sb
+DOMAIN-SUFFIX,doh.opendns.com
+DOMAIN-SUFFIX,dns.quad9.net
+DOMAIN-SUFFIX,hk-hkg.doh.sb
+IP-CIDR,8.8.8.8/32,no-resolve
+IP-CIDR,8.8.4.4/32,no-resolve
+IP-CIDR,1.1.1.1/32,no-resolve
+IP-CIDR,1.0.0.1/32,no-resolve
+IP-CIDR,185.222.222.222/32,no-resolve
+IP-CIDR,208.67.222.222/32,no-resolve
+IP-CIDR,208.67.220.220/32,no-resolve
+IP-CIDR,142.250.0.0/16,no-resolve
+
+# 虚空终端
+DOMAIN-SUFFIX,metacubex.one
+# dnsleaktest
+DOMAIN-KEYWORD,dnsleaktest
