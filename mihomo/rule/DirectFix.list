@@ -7,6 +7,8 @@
 # ntp 服务
 +.ntp.org
 DST-PORT,123
+# github 直连镜像
++.gh-proxy.com
 #
 +.reflix.top
 +.snfaka.com
