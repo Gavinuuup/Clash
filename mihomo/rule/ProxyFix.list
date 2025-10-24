@@ -37,3 +37,5 @@ IP-CIDR,142.250.0.0/16,no-resolve
 DOMAIN-SUFFIX,metacubex.one
 # dnsleaktest
 DOMAIN-KEYWORD,dnsleaktest
+# ping0
+DOMAIN-SUFFIX,ping0.cc
