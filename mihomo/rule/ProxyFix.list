@@ -46,3 +46,6 @@ DOMAIN-SUFFIX,apple-relay.fastly-edge.com
 DOMAIN-SUFFIX,сp4.cloudflare.com
 DOMAIN-SUFFIX,apple-relay.apple.com
 DOMAIN-SUFFIX,gspe1-ssl.ls.apple.com
+
+# 好看视频（也可以直连）
+DOMAIN-SUFFIX,cpmg23.com
