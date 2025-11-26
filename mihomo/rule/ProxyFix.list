@@ -13,7 +13,7 @@ DOMAIN-SUFFIX,fanart.tv
 # 虚空终端
 DOMAIN-SUFFIX,metacubex.one
 # dnsleaktest
-#DOMAIN-KEYWORD,dnsleaktest
+DOMAIN-SUFFIX,dnsleaktest.com
 # ping0
 DOMAIN-SUFFIX,ping0.cc
 
