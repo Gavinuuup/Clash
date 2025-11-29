@@ -2,21 +2,18 @@
 DOMAIN-KEYWORD,1e100
 DOMAIN-KEYWORD,adultiptv
 DOMAIN-KEYWORD,mycamtv
-
 # 肥羊
 DOMAIN,bptv.freetv.top
 # 其他
 DOMAIN-SUFFIX,hcfy.ai
 DOMAIN-SUFFIX,onlyfans.com
 DOMAIN-SUFFIX,fanart.tv
-
 # 虚空终端
 DOMAIN-SUFFIX,metacubex.one
 # dnsleaktest
 DOMAIN-SUFFIX,dnsleaktest.com
 # ping0
 DOMAIN-SUFFIX,ping0.cc
-
 # Apple AI
 DOMAIN-SUFFIX,guzzoni.apple.com
 DOMAIN-SUFFIX,smoot.apple.com
@@ -25,6 +22,7 @@ DOMAIN-SUFFIX,apple-relay.fastly-edge.com
 DOMAIN-SUFFIX,сp4.cloudflare.com
 DOMAIN-SUFFIX,apple-relay.apple.com
 DOMAIN-SUFFIX,gspe1-ssl.ls.apple.com
-
 # 好看视频（也可以直连）
 DOMAIN-SUFFIX,cpmg23.com
+# 独角鲸
+DOMAIN-SUFFIX,fuckip.me
