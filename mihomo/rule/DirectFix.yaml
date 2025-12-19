@@ -45,10 +45,6 @@ payload:
 # 肥羊
   - DOMAIN,myip.ipip.net
   - DOMAIN,r.inews.qq.com
-# iptv  
-  - DOMAIN-SUFFIX,hardcoremedia.xyz
-  - DOMAIN-SUFFIX,ottc.pro
-  - DOMAIN-SUFFIX,douzhicloud.site
 # 涩涩动漫
   - DOMAIN-KEYWORD,91acg
 # 淘宝游戏
