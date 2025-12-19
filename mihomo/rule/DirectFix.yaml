@@ -57,9 +57,12 @@ payload:
   - DOMAIN-SUFFIX,ecoo.top
 # 念音网
   - DOMAIN-SUFFIX,nianyin.com
-# iptv 订阅
+# iptv
   - DOMAIN-SUFFIX,ottiptv.cc
-  - DOMAIN-SUFFIX,iill.top
+  - DOMAIN-SUFFIX,iill.top 
+  - DOMAIN-SUFFIX,hardcoremedia.xyz
+  - DOMAIN-SUFFIX,ottc.pro
+  - DOMAIN-SUFFIX,douzhicloud.site
 # 点播源
   - DOMAIN-SUFFIX,4kfm.com
   - DOMAIN-SUFFIX,leijing.xyz
