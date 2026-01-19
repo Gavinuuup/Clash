@@ -137,7 +137,7 @@ payload:
   - DOMAIN-KEYWORD,ffzyread
   - DOMAIN-KEYWORD,lz-cdn
   - DOMAIN-KEYWORD,ffzy-online
-  - IP-CIDR,23.237.228.130/32,no-resolve
+  - IP-CIDR,23.237.228.0/24,no-resolve
 # 铜钟音乐
   - DOMAIN-SUFFIX,whamon.com
 # 小众软件
