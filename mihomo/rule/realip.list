@@ -3,7 +3,7 @@
 +.home.arpa
 +.local
 +.ts.net
-+.xiaomi.com
++.market.xiaomi.com
 +.evo.host.aliceinit.dev
 lancache.steamcontent.com
 cable.auth.com
@@ -28,6 +28,7 @@ heartbeat.belkin.com
 +.linksys.com
 +.linksyssmartwifi.com
 +.router.asus.com
++.miwifi.com
 mesu.apple.com
 swscan.apple.com
 swquery.apple.com
@@ -49,6 +50,7 @@ ff.dorado.sdo.com
 local.adguard.org
 +.sandai.net
 +.n0808.com
++.docker.io
 +.fastlydns.net
 +.services.googleapis.cn
 +.googleapis.cn
