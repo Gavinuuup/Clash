@@ -142,8 +142,9 @@ payload:
   - DOMAIN-SUFFIX,whamon.com
 # 小众软件
   - DOMAIN-SUFFIX,appinn.net
-# 支付宝 commerce.yundps.com
-  - DOMAIN-KEYWORD,yundps
+# 支付宝
+  - DOMAIN-SUFFIX,yundps.com
+  - DOMAIN-SUFFIX,quhaotui.com
 # 好学文苑网
   - DOMAIN-SUFFIX,hxw.red
 # Xcloudv音乐
