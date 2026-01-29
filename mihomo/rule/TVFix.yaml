@@ -59,6 +59,7 @@ payload:
   - DOMAIN-SUFFIX,guoluche.com
   - DOMAIN-SUFFIX,mytvapp.cc
   - DOMAIN-WILDCARD,dytt*.com
+  - DOMAIN-WILDCARD,fengbao*.com
   - DOMAIN-SUFFIX,hdzyk-cdn.com
   - DOMAIN-KEYWORD,jianpianupdate
   - DOMAIN-KEYWORD,yunso
