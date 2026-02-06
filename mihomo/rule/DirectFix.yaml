@@ -4,6 +4,9 @@ payload:
   - DOMAIN-SUFFIX,52kukan.net
   - DOMAIN-SUFFIX,7xdy.com
   - DOMAIN-SUFFIX,qqarc.com
+# ntp 服务
+  - DOMAIN-SUFFIX,ntp.org
+  - DST-PORT,123
 # github 直连镜像
   - DOMAIN-SUFFIX,gh-proxy.com
 #
