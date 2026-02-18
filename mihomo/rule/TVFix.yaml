@@ -82,5 +82,6 @@ payload:
   - DOMAIN-KEYWORD,ffzyread
   - DOMAIN-KEYWORD,lz-cdn
   - DOMAIN-KEYWORD,ffzy-online
+  - DOMAIN,iptv.21dumbnas.top
   - IP-CIDR,23.237.228.0/24,no-resolve
   - IP-CIDR,156.238.203.0/24,no-resolve
