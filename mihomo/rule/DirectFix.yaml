@@ -82,3 +82,8 @@ payload:
   - DOMAIN-SUFFIX,kelee.one
 #
   - DOMAIN-SUFFIX,openappfilter.com
+# 云盘类
+  - DOMAIN-SUFFIX,qileso.com
+  - DOMAIN-SUFFIX,xiaotusoso.com
+  - DOMAIN-SUFFIX,duanjugou.top
+  
