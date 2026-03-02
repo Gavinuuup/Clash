@@ -1,0 +1,59 @@
+# 对于包含DOMAIN-KEYWORD的规则，mosdns不支持关键词匹配
+# 需要转换为完整的域名列表或使用其他方法
+# 以下是包含关键词的域名，可以手动收集完整列表
+# youxi: 包含 youxi 的域名
+# ysgc: 包含 ysgc 的域名
+# ryplay: 包含 ryplay 的域名
+# 91acg: 包含 91acg 的域名
+# galsanggame: 包含 galsanggame 的域名
+# xcloudv: 包含 xcloudv 的域名
+# yym4: 包含 yym4 的域名
+
+41319.love
+hhiec.com
+zbiptv.com
+52kukan.net
+7xdy.com
+qqarc.com
+ntp.org
+gh-proxy.com
+reflix.top
+snfaka.com
+feiyangdigital.top
+zbds.top
+lianxiwo.top
+llren.com
+youxia.net
+tjihua.com
+keke1.app
+kekys.com
+play-cdn3.com
+lucky.gd
+khkj.xyz
+beizi.biz
+viayoo.com
+samsungapps.com
+fxh1.com
+90nw.com
+ecoo.top
+nianyin.com
+ottiptv.cc
+iill.top
+hardcoremedia.xyz
+ottc.pro
+douzhicloud.site
+whamon.com
+appinn.net
+yundps.com
+quhaotui.com
+hxw.red
+yuetoto.net
+livecodes.vip
+pterclub.net
+kelee.one
+openappfilter.com
+qileso.com
+xiaotusoso.com
+duanjugou.top
+myip.ipip.net
+r.inews.qq.com
