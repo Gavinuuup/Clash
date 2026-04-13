@@ -91,3 +91,6 @@ payload:
   - DOMAIN-SUFFIX,brainiac.top
 # 八字排盘
   - DOMAIN-SUFFIX,mifengzongdongyuan.com
+# 历史上的今天 app
+  - DOMAIN-SUFFIX,luckfast.com
+  - DOMAIN-SUFFIX,myqcloud.com
