@@ -7,9 +7,6 @@ payload:
   - DOMAIN-SUFFIX,7xdy.com
   - DOMAIN-SUFFIX,qqarc.com
   - DOMAIN-SUFFIX,baidustatic.com
-# 沉浸式翻译
-  - DOMAIN-SUFFIX,imtintl.com
-  - DOMAIN-SUFFIX,immersivetranslate.com
 # ntp 服务
   - DOMAIN-SUFFIX,ntp.org
   - DST-PORT,123
