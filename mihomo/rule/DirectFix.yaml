@@ -6,6 +6,10 @@ payload:
   - DOMAIN-SUFFIX,52kukan.net
   - DOMAIN-SUFFIX,7xdy.com
   - DOMAIN-SUFFIX,qqarc.com
+  - DOMAIN-SUFFIX,baidustatic.com
+# 沉浸式翻译
+  - DOMAIN-SUFFIX,imtintl.com
+  - DOMAIN-SUFFIX,immersivetranslate.com
 # ntp 服务
   - DOMAIN-SUFFIX,ntp.org
   - DST-PORT,123
@@ -49,8 +53,11 @@ payload:
   - DOMAIN,r.inews.qq.com
 # 涩涩动漫
   - DOMAIN-KEYWORD,91acg
-# 淘宝游戏
+# 淘宝
   - DOMAIN-KEYWORD,galsanggame
+  - DOMAIN-SUFFIX,mmstat.com
+  - DOMAIN-SUFFIX,mediav.com
+  - DOMAIN-SUFFIX,aliapp.org
 # hinas
   - DOMAIN-SUFFIX,ecoo.top
 # 念音网
