@@ -72,6 +72,8 @@ payload:
 # 支付宝
   - DOMAIN-SUFFIX,yundps.com
   - DOMAIN-SUFFIX,quhaotui.com
+  - DOMAIN-SUFFIX,quchuangsh.com
+  - DOMAIN-SUFFIX,pop2me.com
 # 好学文苑网
   - DOMAIN-SUFFIX,hxw.red
 # Xcloudv音乐
