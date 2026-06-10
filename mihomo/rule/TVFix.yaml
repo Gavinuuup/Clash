@@ -60,7 +60,8 @@ payload:
   - DOMAIN-SUFFIX,mytvapp.cc
   - DOMAIN-WILDCARD,*.dytt*.com
   - DOMAIN-WILDCARD,*.lzcdn*.com
-  - DOMAIN-SUFFIX,fengbao8.com
+  - DOMAIN-KEYWORD,fengbao
+  - DOMAIN-KEYWORD,baofeng
   - DOMAIN-SUFFIX,bfbfvip.com
   - DOMAIN-SUFFIX,qwe132456.cc
   - DOMAIN-SUFFIX,hdzyk-cdn.com
