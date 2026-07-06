@@ -103,3 +103,5 @@ payload:
 # 历史上的今天 app
   - DOMAIN-SUFFIX,luckfast.com
   - DOMAIN-SUFFIX,myqcloud.com
+# InsCode(快马)
+  - DOMAIN-SUFFIX,inscode.net
