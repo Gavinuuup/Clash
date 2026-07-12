@@ -8,6 +8,7 @@ payload:
   - DOMAIN-SUFFIX,qqarc.com
   - DOMAIN-SUFFIX,baidustatic.com
   - DOMAIN-SUFFIX,itmop.com
+  - DOMAIN-SUFFIX,itmopcdn.com
 # ntp 服务
   - DOMAIN-SUFFIX,ntp.org
   - DST-PORT,123
