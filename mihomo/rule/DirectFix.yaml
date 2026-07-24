@@ -10,6 +10,7 @@ payload:
   - DOMAIN-SUFFIX,itmop.com
   - DOMAIN-SUFFIX,itmopcdn.com
   - DOMAIN-SUFFIX,hwxz999.com
+  - DOMAIN-SUFFIX,ppkkzz.com
 # ntp 服务
   - DOMAIN-SUFFIX,ntp.org
   - DST-PORT,123
