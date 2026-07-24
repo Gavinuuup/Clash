@@ -85,5 +85,10 @@ payload:
   - DOMAIN-KEYWORD,lz-cdn
   - DOMAIN-KEYWORD,ffzy-online
   - DOMAIN,iptv.21dumbnas.top
+  - DOMAIN-SUFFIX,qwe132456.cc
+  - DOMAIN-SUFFIX,xuntu56.com
+  - DOMAIN-SUFFIX,lejiazm.com
+  - DOMAIN-SUFFIX,aihmong.com
+  - DOMAIN-SUFFIX,yqk.app
   - IP-CIDR,23.237.228.0/24,no-resolve
   - IP-CIDR,156.238.203.0/24,no-resolve
