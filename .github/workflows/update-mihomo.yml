@@ -38,14 +38,11 @@ jobs:
 
       run: |
 
-        rm -f mihomo mihomo.gz
-
-
         wget -O mihomo.gz \
         https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-v1-${MIHOMO_VERSION}.gz
 
 
-        gunzip mihomo.gz
+        gzip -dc mihomo.gz > mihomo
 
 
         chmod +x mihomo
