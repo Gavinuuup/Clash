@@ -1,5 +1,8 @@
 name: Update Mihomo Rules
 
+permissions:
+  contents: write
+
 
 on:
 
@@ -11,7 +14,6 @@ on:
   workflow_dispatch:
 
 
-
 env:
 
   MIHOMO_VERSION: v1.19.29
@@ -21,7 +23,6 @@ env:
 jobs:
 
   update:
-
 
     runs-on: ubuntu-latest
 
@@ -49,6 +50,7 @@ jobs:
 
 
         ./mihomocore -v
+
 
 
     - name: Download ChinaMax rules
@@ -91,14 +93,6 @@ jobs:
 
 
 
-    - name: Check changes
-
-      run: |
-
-        git status
-
-
-
     - name: Commit changes
 
       run: |
@@ -118,3 +112,17 @@ jobs:
 
 
         git push
+
+
+
+    - name: Cleanup
+
+      run: |
+
+        rm -f mihomo.gz
+
+        rm -f mihomocore
+
+        rm -f ChinaMax_Domain.yaml
+
+        rm -f ChinaMax_IP.yaml
