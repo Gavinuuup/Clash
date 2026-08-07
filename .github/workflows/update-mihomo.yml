@@ -1,15 +1,79 @@
 name: Update Mihomo Rules
 
+
 on:
+
   workflow_dispatch:
 
+
 jobs:
-  test:
+
+  update:
 
     runs-on: ubuntu-latest
 
+
     steps:
 
-    - name: Test
+    - name: Checkout
+      uses: actions/checkout@v4
+
+
+    - name: Download mihomo
       run: |
-        echo "GitHub Actions OK"
+
+        wget -O mihomo.gz \
+        https://github.com/MetaCubeX/mihomo/releases/latest/download/mihomo-linux-amd64-compatible-v1.gz
+
+        gunzip mihomo.gz
+
+        chmod +x mihomo
+
+
+
+    - name: Download ChinaMax rules
+      run: |
+
+        wget -O ChinaMax_Domain.yaml \
+        https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
+
+
+        wget -O ChinaMax_IP.yaml \
+        https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_IP.yaml
+
+
+
+    - name: Convert to mrs
+      run: |
+
+        mkdir -p mihomo/rule
+
+
+        ./mihomo convert-ruleset \
+        domain \
+        ChinaMax_Domain.yaml \
+        mihomo/rule/ChinaMax_Domain.mrs
+
+
+        ./mihomo convert-ruleset \
+        ipcidr \
+        ChinaMax_IP.yaml \
+        mihomo/rule/ChinaMax_IP.mrs
+
+
+
+    - name: Commit changes
+      run: |
+
+        git config user.name github-actions
+
+        git config user.email github-actions@github.com
+
+
+        git add mihomo/rule/
+
+
+        git commit -m "Update ChinaMax MRS" || exit 0
+
+
+        git push
