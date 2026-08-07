@@ -42,13 +42,13 @@ jobs:
         https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-v1-${MIHOMO_VERSION}.gz
 
 
-        gzip -dc mihomo.gz > mihomo
+        gzip -dc mihomo.gz > mihomocore
 
 
-        chmod +x mihomo
+        chmod +x mihomocore
 
 
-        ./mihomo -v
+        ./mihomocore -v
 
 
     - name: Download ChinaMax rules
