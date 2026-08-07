@@ -3,35 +3,57 @@ name: Update Mihomo Rules
 
 on:
 
+  schedule:
+    # 每天北京时间凌晨2点运行
+    # UTC 18:00
+    - cron: "0 18 * * *"
+
   workflow_dispatch:
+
+
+
+env:
+
+  MIHOMO_VERSION: v1.19.29
+
 
 
 jobs:
 
   update:
 
+
     runs-on: ubuntu-latest
 
 
     steps:
 
+
     - name: Checkout
       uses: actions/checkout@v4
 
 
+
     - name: Download mihomo
+
       run: |
 
         wget -O mihomo.gz \
-        https://github.com/MetaCubeX/mihomo/releases/latest/download/mihomo-linux-amd64-compatible-v1.gz
+        https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-v1-${MIHOMO_VERSION}.gz
+
 
         gunzip mihomo.gz
+
 
         chmod +x mihomo
 
 
+        ./mihomo -v
+
+
 
     - name: Download ChinaMax rules
+
       run: |
 
         wget -O ChinaMax_Domain.yaml \
@@ -43,7 +65,8 @@ jobs:
 
 
 
-    - name: Convert to mrs
+    - name: Convert Domain rules
+
       run: |
 
         mkdir -p mihomo/rule
@@ -51,18 +74,34 @@ jobs:
 
         ./mihomo convert-ruleset \
         domain \
+        yaml \
         ChinaMax_Domain.yaml \
         mihomo/rule/ChinaMax_Domain.mrs
 
 
+
+    - name: Convert IP rules
+
+      run: |
+
         ./mihomo convert-ruleset \
         ipcidr \
+        yaml \
         ChinaMax_IP.yaml \
         mihomo/rule/ChinaMax_IP.mrs
 
 
 
+    - name: Check changes
+
+      run: |
+
+        git status
+
+
+
     - name: Commit changes
+
       run: |
 
         git config user.name github-actions
@@ -73,7 +112,10 @@ jobs:
         git add mihomo/rule/
 
 
-        git commit -m "Update ChinaMax MRS" || exit 0
+        git diff --cached --quiet && exit 0
+
+
+        git commit -m "Update ChinaMax MRS"
 
 
         git push
