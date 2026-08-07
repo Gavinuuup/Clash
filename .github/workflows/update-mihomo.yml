@@ -71,7 +71,7 @@ jobs:
         mkdir -p mihomo/rule
 
 
-        ./mihomo convert-ruleset \
+        ./mihomocore convert-ruleset \
         domain \
         yaml \
         ChinaMax_Domain.yaml \
@@ -83,7 +83,7 @@ jobs:
 
       run: |
 
-        ./mihomo convert-ruleset \
+        ./mihomocore convert-ruleset \
         ipcidr \
         yaml \
         ChinaMax_IP.yaml \
