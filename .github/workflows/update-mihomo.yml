@@ -85,6 +85,9 @@ jobs:
 
       run: |
 
+        mkdir -p mihomo/rule
+        
+        
         ./mihomocore convert-ruleset \
         ipcidr \
         yaml \
