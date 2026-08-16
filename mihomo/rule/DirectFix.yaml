@@ -81,7 +81,6 @@ payload:
 # 念音网
   - DOMAIN-SUFFIX,nianyin.com
 # iptv
-  - DOMAIN-SUFFIX,ottiptv.cc
   - DOMAIN-SUFFIX,iill.top 
   - DOMAIN-SUFFIX,hardcoremedia.xyz
   - DOMAIN-SUFFIX,ottc.pro
@@ -128,3 +127,5 @@ payload:
   - DOMAIN-SUFFIX,inscode.net
 # 基元律动  
   - DOMAIN-SUFFIX,tokenrhythm.studio
+# 优6壁纸
+  - DOMAIN-SUFFIX,youliu.cc
