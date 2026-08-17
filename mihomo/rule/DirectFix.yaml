@@ -28,6 +28,7 @@ payload:
   - DOMAIN-SUFFIX,ppkkzz.com
   - DOMAIN-SUFFIX,seagm.com
   - DOMAIN-SUFFIX,lk888.ai
+  - DOMAIN-SUFFIX,gov.cn
 # ntp 服务
   - DOMAIN-SUFFIX,ntp.org
   - DST-PORT,123
