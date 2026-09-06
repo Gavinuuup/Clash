@@ -13,6 +13,7 @@ payload:
   - DOMAIN-KEYWORD,hnagroup
   - DOMAIN-KEYWORD,stripe
   - DOMAIN-KEYWORD,weibo
+  - DOMAIN-SUFFIX,cn
 #  
   - DOMAIN-SUFFIX,41319.shop
   - DOMAIN-SUFFIX,frlotus.ggff.net
