@@ -111,8 +111,6 @@ payload:
   - DOMAIN-SUFFIX,livecodes.vip
 # PT站
   - DOMAIN-SUFFIX,pterclub.net
-# kelee
-  - DOMAIN-SUFFIX,kelee.one
 #
   - DOMAIN-SUFFIX,openappfilter.com
 # 云盘类
