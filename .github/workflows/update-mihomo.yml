@@ -85,7 +85,7 @@ jobs:
 
       run: |
 
-        mkdir -p mihomo/rule
+        # mkdir -p mihomo/rule
         
         
         ./mihomocore convert-ruleset \
@@ -111,7 +111,11 @@ jobs:
         git diff --cached --quiet && exit 0
 
 
-        git commit -m "Update ChinaMax MRS"
+        # git commit -m "Update ChinaMax MRS"
+        # UTC 时间
+        # git commit -m "chore: 自动同步 ChinaMax MRS 规则 [$(date +'%Y-%m-%d %H:%M:%S')]"
+        # 北京时间
+        git commit -m "chore: 自动同步 ChinaMax MRS 规则 [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
 
 
         git push
