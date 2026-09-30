@@ -2,7 +2,9 @@ name: Sync Mihomo AI Rule
 
 on:
   schedule:
+    # 每天 UTC 0:00（北京时间早上 8:00）自动运行
     - cron: '0 1 * * *'
+  # 支持在 GitHub 页面手动触发运行
   workflow_dispatch:
 
 jobs:
@@ -14,21 +16,10 @@ jobs:
 
       - name: Download rule file
         run: |
-          mkdir -p mihomo/rule
-          
-          # 尝试伪装完整的请求头拉取
-          curl -sSL -A "clash.meta" \
-            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
-            -H "Accept-Language: zh-CN,zh;q=0.9,en;q=0.8" \
-            -o mihomo/rule/AI.yaml \
-            "https://kelee.one/Tool/Clash/Rule/AI.yaml"
-
-          # 校验：检查下载下来的文件是否是真正的 YAML（如果包含 <!DOCTYPE 文本则说明被拦截了）
-          if grep -q "DOCTYPE html" mihomo/rule/AI.yaml || [ ! -s mihomo/rule/AI.yaml ]; then
-            echo "Direct curl was blocked by Cloudflare! Trying mirror domain..."
-            # kelee.one 的另一种备用域名/镜像地址
-            curl -sSL -A "clash.meta" -o mihomo/rule/AI.yaml "https://rule.kelee.one/Clash/AI.yaml"
-          fi
+          # 创建目标目录（如果不存在）
+          # mkdir -p mihomo/rule
+          # 下载规则文件并替换
+          curl -sSL -o mihomo/rule/AI.yaml "https://rapid-wildflower-0a76.changcheng9086.workers.dev"
 
       - name: Commit and push if changed
         run: |
@@ -36,6 +27,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add mihomo/rule/AI.yaml
           
+          # 检查文件是否有更新，有更新才提交
           if git diff --staged --quiet; then
             echo "规则没有变化，无需提交。"
           else
@@ -43,5 +35,3 @@ jobs:
             git commit -m "chore: 自动更新 mihomo AI 规则 [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
             git push
           fi
-
-
