@@ -91,5 +91,5 @@ payload:
   - DOMAIN-SUFFIX,aihmong.com
   - DOMAIN-SUFFIX,yqk.app
   - DOMAIN-SUFFIX,wmvbo.com
-  - IP-CIDR,23.237.228.0/24,no-resolve
-  - IP-CIDR,156.238.203.0/24,no-resolve
+ # - IP-CIDR,23.237.228.0/24,no-resolve
+ # - IP-CIDR,156.238.203.0/24,no-resolve
