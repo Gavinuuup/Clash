@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      MIHOMO_VERSION: v1.19.29
+      MIHOMO_VERSION: v1.19.31
       RULE_DIR: mihomo/rule
 
     steps:
@@ -32,23 +32,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download Mihomo
-        shell: bash
+      - name: Download mihomo
         run: |
-          set -euo pipefail
+          wget -O mihomo.gz \
+          https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-v1-${MIHOMO_VERSION}.gz
 
-          VERSION="${MIHOMO_VERSION#v}"
+          gzip -dc mihomo.gz > mihomocore
 
-          echo "Downloading Mihomo ${MIHOMO_VERSION}..."
-
-          curl -fL \
-            -o mihomocore.gz \
-            "https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-v1-${VERSION}.gz"
-
-          gzip -d mihomocore.gz
           chmod +x mihomocore
 
-          echo "Mihomo version:"
           ./mihomocore -v
 
       - name: Install YAML parser
