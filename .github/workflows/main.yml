@@ -1,0 +1,442 @@
+```yaml
+name: Convert Mihomo Rules to MRS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'mihomo/rule/**/*.yaml'
+      - 'mihomo/rule/**/*.yml'
+      - 'mihomo/rule/**/*.txt'
+      - 'mihomo/rule/**/*.list'
+      - 'mihomo/rule/**'
+      - '!mihomo/rule/**/*.mrs'
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    name: Convert rules to MRS
+    runs-on: ubuntu-latest
+
+    env:
+      MIHOMO_VERSION: v1.19.29
+      RULE_DIR: mihomo/rule
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Download Mihomo
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          VERSION="${MIHOMO_VERSION#v}"
+
+          echo "Downloading Mihomo ${MIHOMO_VERSION}..."
+
+          curl -fL \
+            -o mihomocore.gz \
+            "https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-v1-${VERSION}.gz"
+
+          gzip -d mihomocore.gz
+          chmod +x mihomocore
+
+          echo "Mihomo version:"
+          ./mihomocore -v
+
+      - name: Install YAML parser
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python3 -m pip install --disable-pip-version-check --quiet PyYAML
+
+      - name: Convert rules
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python3 <<'PY'
+          import os
+          import sys
+          import ipaddress
+          import subprocess
+          from pathlib import Path
+
+          try:
+              import yaml
+          except ImportError:
+              print("ERROR: PyYAML is not installed.")
+              sys.exit(1)
+
+          RULE_DIR = Path(os.environ["RULE_DIR"])
+          MIHOMO = Path("./mihomocore")
+
+          SOURCE_EXTENSIONS = {".yaml", ".yml", ".txt", ".list"}
+          MRS_EXTENSIONS = {".mrs"}
+
+          if not RULE_DIR.exists():
+              print(f"ERROR: Rule directory does not exist: {RULE_DIR}")
+              sys.exit(1)
+
+          def is_ip_or_cidr(value):
+              """
+              判断一个字符串是不是 IPv4/IPv6 地址或 CIDR。
+              """
+              value = str(value).strip()
+
+              if not value:
+                  return False
+
+              # 去掉可能存在的 Clash no-resolve
+              if "," in value:
+                  parts = value.split(",")
+                  if parts[0].upper() in {
+                      "IP-CIDR",
+                      "IP-CIDR6",
+                  }:
+                      value = parts[1].strip()
+
+              try:
+                  ipaddress.ip_network(value, strict=False)
+                  return True
+              except ValueError:
+                  try:
+                      ipaddress.ip_address(value)
+                      return True
+                  except ValueError:
+                      return False
+
+          def extract_yaml_payload(path):
+              """
+              从 Mihomo/Clash YAML 中提取 payload。
+
+              典型格式：
+
+              payload:
+                - example.com
+                - google.com
+
+              或：
+
+              payload:
+                - 1.1.1.0/24
+                - 8.8.8.8/32
+              """
+
+              try:
+                  with path.open("r", encoding="utf-8") as f:
+                      data = yaml.safe_load(f)
+              except Exception as e:
+                  raise RuntimeError(
+                      f"Failed to parse YAML: {path}\n{e}"
+                  )
+
+              if isinstance(data, dict):
+                  payload = data.get("payload")
+
+                  if isinstance(payload, list):
+                      return payload
+
+                  # 某些规则文件可能直接是：
+                  #
+                  # rules:
+                  #   - ...
+                  #
+                  # 虽然不是标准 domain/ipcidr rule-provider，
+                  # 这里允许读取 rules。
+                  rules = data.get("rules")
+
+                  if isinstance(rules, list):
+                      return rules
+
+              if isinstance(data, list):
+                  return data
+
+              raise RuntimeError(
+                  f"Cannot find a usable payload/rules list in YAML: {path}"
+              )
+
+          def clean_text_line(line):
+              line = line.strip()
+
+              if not line:
+                  return None
+
+              # 注释
+              if line.startswith("#"):
+                  return None
+
+              return line
+
+          def get_rule_values(path):
+              """
+              返回：
+                values = 实际规则内容
+                source_type = yaml/text
+              """
+
+              suffix = path.suffix.lower()
+
+              if suffix in {".yaml", ".yml"}:
+                  values = extract_yaml_payload(path)
+
+                  cleaned = []
+
+                  for value in values:
+                      if value is None:
+                          continue
+
+                      value = str(value).strip()
+
+                      if not value:
+                          continue
+
+                      cleaned.append(value)
+
+                  return cleaned, "yaml"
+
+              elif suffix in {".txt", ".list"}:
+                  cleaned = []
+
+                  with path.open("r", encoding="utf-8-sig") as f:
+                      for line in f:
+                          value = clean_text_line(line)
+
+                          if value:
+                              cleaned.append(value)
+
+                  return cleaned, "text"
+
+              raise RuntimeError(f"Unsupported file type: {path}")
+
+          def detect_behavior(values, path):
+              """
+              自动判断 domain / ipcidr。
+
+              规则：
+                全部是 IP/CIDR -> ipcidr
+                全部不是 IP/CIDR -> domain
+                两者混合 -> 报错
+
+              这样可以避免把混合规则错误转换成 MRS。
+              """
+
+              if not values:
+                  raise RuntimeError(
+                      f"Rule file is empty: {path}"
+                  )
+
+              ip_values = []
+              domain_values = []
+
+              for value in values:
+                  # 支持标准 Clash IP-CIDR 行
+                  upper = value.upper()
+
+                  if upper.startswith("IP-CIDR,"):
+                      ip_values.append(value)
+                      continue
+
+                  if upper.startswith("IP-CIDR6,"):
+                      ip_values.append(value)
+                      continue
+
+                  if is_ip_or_cidr(value):
+                      ip_values.append(value)
+                  else:
+                      domain_values.append(value)
+
+              if ip_values and domain_values:
+                  print()
+                  print("=" * 80)
+                  print(f"ERROR: Mixed domain/IP rules detected: {path}")
+                  print("=" * 80)
+                  print()
+                  print("The file contains both domain rules and IP/CIDR rules.")
+                  print("MRS requires a single behavior: domain or ipcidr.")
+                  print()
+                  print("Examples of detected IP rules:")
+                  for x in ip_values[:10]:
+                      print(f"  {x}")
+                  print()
+                  print("Examples of detected domain rules:")
+                  for x in domain_values[:10]:
+                      print(f"  {x}")
+                  print()
+                  raise RuntimeError(
+                      f"Mixed domain/IP rules are not supported in one MRS file: {path}"
+                  )
+
+              if ip_values:
+                  return "ipcidr"
+
+              return "domain"
+
+          def convert_file(source):
+              values, source_type = get_rule_values(source)
+
+              behavior = detect_behavior(values, source)
+
+              output = source.with_suffix(".mrs")
+
+              print()
+              print("-" * 80)
+              print(f"Source   : {source}")
+              print(f"Format   : {source_type}")
+              print(f"Behavior : {behavior}")
+              print(f"Output   : {output}")
+              print(f"Rules    : {len(values)}")
+              print("-" * 80)
+
+              command = [
+                  str(MIHOMO),
+                  "convert-ruleset",
+                  behavior,
+                  source_type,
+                  str(source),
+                  str(output),
+              ]
+
+              result = subprocess.run(
+                  command,
+                  text=True,
+                  capture_output=True,
+              )
+
+              if result.stdout:
+                  print(result.stdout)
+
+              if result.returncode != 0:
+                  if result.stderr:
+                      print(result.stderr, file=sys.stderr)
+
+                  raise RuntimeError(
+                      f"Mihomo conversion failed: {source}"
+                  )
+
+              if not output.exists():
+                  raise RuntimeError(
+                      f"Mihomo reported success but MRS was not created: {output}"
+                  )
+
+              size = output.stat().st_size
+
+              print(
+                  f"SUCCESS: {output} "
+                  f"({size:,} bytes)"
+              )
+
+          # ------------------------------------------------------------------
+          # 1. 扫描所有源规则文件
+          # ------------------------------------------------------------------
+
+          source_files = []
+
+          for path in RULE_DIR.rglob("*"):
+              if not path.is_file():
+                  continue
+
+              if path.suffix.lower() in SOURCE_EXTENSIONS:
+                  source_files.append(path)
+
+          source_files.sort()
+
+          print()
+          print("=" * 80)
+          print("Mihomo Rule Conversion")
+          print("=" * 80)
+          print(f"Rule directory: {RULE_DIR}")
+          print(f"Source files  : {len(source_files)}")
+          print()
+
+          # ------------------------------------------------------------------
+          # 2. 转换所有 YAML / TXT / LIST
+          # ------------------------------------------------------------------
+
+          failed = []
+
+          for source in source_files:
+              try:
+                  convert_file(source)
+              except Exception as e:
+                  print()
+                  print(f"FAILED: {source}")
+                  print(str(e), file=sys.stderr)
+                  failed.append(source)
+
+          # ------------------------------------------------------------------
+          # 3. 删除没有对应源文件的孤立 MRS
+          # ------------------------------------------------------------------
+
+          source_stems = {
+              path.with_suffix("").resolve()
+              for path in source_files
+          }
+
+          orphan_mrs = []
+
+          for mrs in RULE_DIR.rglob("*.mrs"):
+              if not mrs.is_file():
+                  continue
+
+              if mrs.with_suffix("").resolve() not in source_stems:
+                  orphan_mrs.append(mrs)
+
+          for mrs in sorted(orphan_mrs):
+              print(f"Removing orphan MRS: {mrs}")
+              mrs.unlink()
+
+          # ------------------------------------------------------------------
+          # 4. 如果任何规则转换失败，整个 Action 失败
+          # ------------------------------------------------------------------
+
+          if failed:
+              print()
+              print("=" * 80)
+              print("Some rule files failed to convert:")
+              print("=" * 80)
+
+              for path in failed:
+                  print(f"  {path}")
+
+              sys.exit(1)
+
+          print()
+          print("=" * 80)
+          print("All rule files converted successfully.")
+          print("=" * 80)
+          PY
+
+      - name: Show changes
+        shell: bash
+        run: |
+          git status --short
+
+      - name: Commit and push MRS files
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add mihomo/rule
+
+          if git diff --cached --quiet; then
+            echo "No MRS changes detected."
+            exit 0
+          fi
+
+          git commit -m "chore: update mihomo MRS rules"
+
+          git push
+```
