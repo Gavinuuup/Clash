@@ -1,0 +1,36 @@
+name: Sync Mihomo AI Rule
+
+on:
+  schedule:
+    # 每天 UTC 0:00（北京时间早上 8:00）自动运行
+    - cron: '0 0 * * *'
+  # 支持在 GitHub 页面手动触发运行
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download rule file
+        run: |
+          # 创建目标目录（如果不存在）
+          # mkdir -p mihomo/rule
+          # 下载规则文件并替换
+          curl -A "clash.meta" -L -o mihomo/rule/AI.yaml https://kelee.one/Tool/Clash/Rule/AI.yaml
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add mihomo/rule/AI.yaml
+          
+          # 检查文件是否有更新，有更新才提交
+          if git diff --staged --quiet; then
+            echo "规则没有变化，无需提交。"
+          else
+            git commit -m "chore: 自动更新 mihomo AI 规则 [$(date +'%Y-%m-%d %H:%M:%S')]"
+            git push
+          fi
