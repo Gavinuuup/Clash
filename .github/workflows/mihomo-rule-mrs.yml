@@ -1,4 +1,4 @@
-name: Convert Rules to MRS
+name: Convert Mihomo Rules to MRS
 
 permissions:
   contents: write
