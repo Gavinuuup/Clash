@@ -31,6 +31,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "规则没有变化，无需提交。"
           else
-            git commit -m "chore: 自动更新 mihomo AI 规则 [$(date +'%Y-%m-%d %H:%M:%S')]"
+            # git commit -m "chore: 自动更新 mihomo AI 规则 [$(date +'%Y-%m-%d %H:%M:%S')]"
+            git commit -m "chore: 自动更新 mihomo AI 规则 [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
             git push
           fi
