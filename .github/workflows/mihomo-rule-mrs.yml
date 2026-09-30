@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      MIHOMO_VERSION: v1.19.29
+      MIHOMO_VERSION: v1.19.31
       RULE_DIR: mihomo/rule
 
     steps:
