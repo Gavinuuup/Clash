@@ -104,7 +104,7 @@ payload:
 # Xcloudv音乐
   - DOMAIN-KEYWORD,xcloudv
 # 音乐魔石
-  - DOMAIN-KEYWORD,yym4
+  - DOMAIN-KEYWORD,yym5
 # 机场
   - DOMAIN-SUFFIX,yuetoto.net
 # 直播源论坛
