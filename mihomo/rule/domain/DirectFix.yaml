@@ -1,143 +1,116 @@
-payload:
-# blackmatrix7 - ChinaMax.yaml
-  - DOMAIN-KEYWORD,tmall.com
-  - DOMAIN-KEYWORD,alicdn
-  - DOMAIN-KEYWORD,alipay
-  - DOMAIN-KEYWORD,aliyun
-  - DOMAIN-KEYWORD,baidu
-  - DOMAIN-KEYWORD,beplay
-  - DOMAIN-KEYWORD,officecdn
-  - DOMAIN-KEYWORD,taobao
-  - DOMAIN-KEYWORD,bilibili
-  - DOMAIN-KEYWORD,qiyi
-  - DOMAIN-KEYWORD,hnagroup
-  - DOMAIN-KEYWORD,stripe
-  - DOMAIN-KEYWORD,weibo
-  #- DOMAIN-SUFFIX,cn
-#  
-  - DOMAIN-SUFFIX,41319.shop
-  - DOMAIN-SUFFIX,frlotus.ggff.net
-  - DOMAIN-SUFFIX,hhiec.com
-  - DOMAIN-SUFFIX,zbiptv.com
-  - DOMAIN-SUFFIX,52kukan.net
-  - DOMAIN-SUFFIX,7xdy.com
-  - DOMAIN-SUFFIX,qqarc.com
-  - DOMAIN-SUFFIX,baidustatic.com
-  - DOMAIN-SUFFIX,itmop.com
-  - DOMAIN-SUFFIX,itmopcdn.com
-  - DOMAIN-SUFFIX,hwxz999.com
-  - DOMAIN-SUFFIX,ppkkzz.com
-  - DOMAIN-SUFFIX,seagm.com
-  - DOMAIN-SUFFIX,lk888.ai
-  - DOMAIN-SUFFIX,gov.cn
+payload: 
+  - +.41319.shop
+  - +.frlotus.ggff.net
+  - +.hhiec.com
+  - +.zbiptv.com
+  - +.52kukan.net
+  - +.7xdy.com
+  - +.qqarc.com
+  - +.baidustatic.com
+  - +.itmop.com
+  - +.itmopcdn.com
+  - +.hwxz999.com
+  - +.ppkkzz.com
+  - +.seagm.com
+  - +.lk888.ai
+  - +.gov.cn
 # ntp 服务
-  - DOMAIN-SUFFIX,ntp.org
-  - DST-PORT,123
+  - +.ntp.org
 # github 直连镜像
-  - DOMAIN-SUFFIX,gh-proxy.com
+  - +.gh-proxy.com
 #
-  - DOMAIN-SUFFIX,reflix.top
-  - DOMAIN-SUFFIX,snfaka.com
-  - DOMAIN-SUFFIX,feiyangdigital.top
-  - DOMAIN-SUFFIX,zbds.top
-  - DOMAIN-SUFFIX,lianxiwo.top
+  - +.reflix.top
+  - +.snfaka.com
+  - +.feiyangdigital.top
+  - +.zbds.top
+  - +.lianxiwo.top
 # 游侠
-  - DOMAIN-SUFFIX,llren.com
-  - DOMAIN-SUFFIX,youxia.net
-  - DOMAIN-KEYWORD,youxi
+  - +.llren.com
+  - +.youxia.net
 # 影视工厂
-  - DOMAIN-KEYWORD,ysgc
-  - DOMAIN-SUFFIX,tjihua.com
+  - +.tjihua.com
 # keke1
-  - DOMAIN-SUFFIX,keke1.app
-  - DOMAIN-SUFFIX,kekys.com
-  - DOMAIN-SUFFIX,play-cdn3.com
+  - +.keke1.app
+  - +.kekys.com
+  - +.play-cdn3.com
 # lucky
-  - DOMAIN-SUFFIX,lucky.gd
+  - +.lucky.gd
 # KHMD
-  - DOMAIN-SUFFIX,khkj.xyz
+  - +.khkj.xyz
 # 123
-  - DOMAIN-SUFFIX,beizi.biz
+  - +.beizi.biz
 # via
-  - DOMAIN-SUFFIX,viayoo.com
+  - +.viayoo.com
 # 三星
-  - DOMAIN-KEYWORD,galaxyappstore
-  - DOMAIN-SUFFIX,samsungapps.com
+  - +.samsungapps.com
 # 适配音乐
-  - DOMAIN-SUFFIX,fxh1.com
-  - DOMAIN-SUFFIX,90nw.com
-# 555电影
-  - DOMAIN-KEYWORD,ryplay
+  - +.fxh1.com
+  - +.90nw.com
 # 肥羊
-  - DOMAIN,myip.ipip.net
-  - DOMAIN,r.inews.qq.com
-# 涩涩动漫
-  - DOMAIN-KEYWORD,91acg
+  - myip.ipip.net
+  - r.inews.qq.com
 # 淘宝
-  - DOMAIN-KEYWORD,galsanggame
-  - DOMAIN-SUFFIX,mmstat.com
-  - DOMAIN-SUFFIX,mediav.com
-  - DOMAIN-SUFFIX,aliapp.org
+  - +.mmstat.com
+  - +.mediav.com
+  - +.aliapp.org
 # hinas
-  - DOMAIN-SUFFIX,ecoo.top
+  - +.ecoo.top
 # 念音网
-  - DOMAIN-SUFFIX,nianyin.com
+  - +.nianyin.com
 # iptv
-  - DOMAIN-SUFFIX,iill.top 
-  - DOMAIN-SUFFIX,hardcoremedia.xyz
-  - DOMAIN-SUFFIX,ottc.pro
-  - DOMAIN-SUFFIX,douzhicloud.site
+  - +.iill.top 
+  - +.hardcoremedia.xyz
+  - +.ottc.pro
+  - +.douzhicloud.site
 # 铜钟音乐
-  - DOMAIN-SUFFIX,whamon.com
+  - +.whamon.com
 # 小众软件
-  - DOMAIN-SUFFIX,appinn.net
+  - +.appinn.net
 # 支付宝
-  - DOMAIN-SUFFIX,yundps.com
-  - DOMAIN-SUFFIX,quhaotui.com
-  - DOMAIN-SUFFIX,quchuangsh.com
-  - DOMAIN-SUFFIX,pop2me.com
-  - DOMAIN-SUFFIX,alimama.com
-  - DOMAIN-SUFFIX,tanwuya.com
-  - DOMAIN-SUFFIX,boxiantech.com
+  - +.yundps.com
+  - +.quhaotui.com
+  - +.quchuangsh.com
+  - +.pop2me.com
+  - +.alimama.com
+  - +.tanwuya.com
+  - +.boxiantech.com
 # 好学文苑网
-  - DOMAIN-SUFFIX,hxw.red
-# Xcloudv音乐
-  - DOMAIN-KEYWORD,xcloudv
+  - +.hxw.red
 # 音乐魔石
-  - DOMAIN-KEYWORD,yym4
+  - +.yym*.com
 # 机场
-  - DOMAIN-SUFFIX,yuetoto.net
+  - +.yuetoto.net
 # 直播源论坛
-  - DOMAIN-SUFFIX,livecodes.vip
+  - +.livecodes.vip
 # PT站
-  - DOMAIN-SUFFIX,pterclub.net
+  - +.pterclub.net
 #
-  - DOMAIN-SUFFIX,openappfilter.com
+  - +.openappfilter.com
 # 云盘类
-  - DOMAIN-SUFFIX,qileso.com
-  - DOMAIN-SUFFIX,xiaotusoso.com
-  - DOMAIN-SUFFIX,duanjugou.top
+  - +.qileso.com
+  - +.xiaotusoso.com
+  - +.duanjugou.top
 # SheepFJ 快捷指令
-  - DOMAIN-SUFFIX,brainiac.top
+  - +.brainiac.top
 # 八字排盘
-  - DOMAIN-SUFFIX,mifengzongdongyuan.com
+  - +.mifengzongdongyuan.com
 # 历史上的今天 app
-  - DOMAIN-SUFFIX,luckfast.com
-  - DOMAIN-SUFFIX,myqcloud.com
+  - +.luckfast.com
+  - +.myqcloud.com
 # InsCode(快马)
-  - DOMAIN-SUFFIX,inscode.net
+  - +.inscode.net
 # 基元律动  
-  - DOMAIN-SUFFIX,tokenrhythm.studio
+  - +.tokenrhythm.studio
 # 优6壁纸
-  - DOMAIN-SUFFIX,youliu.cc
+  - +.youliu.cc
 # deepseep
-  - DOMAIN-SUFFIX,yunyudown.com
+  - +.yunyudown.com
 # 哈基米纪念日
-  - DOMAIN-SUFFIX,laowaidrivetest.com
-  - DOMAIN-SUFFIX,getui.com
-  - DOMAIN-SUFFIX,mzfanyi.vip
-  - DOMAIN-SUFFIX,guoxiehao.com
+  - +.laowaidrivetest.com
+  - +.getui.com
+  - +.mzfanyi.vip
+  - +.guoxiehao.com
 # 在下莫老师
-  - DOMAIN-SUFFIX,xn--ghqy5t5uf651b82d.com
+  - +.xn--ghqy5t5uf651b82d.com
 # 66办公
-  - DOMAIN-SUFFIX,66office.com
+  - +.66office.com
