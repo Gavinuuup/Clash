@@ -29,7 +29,6 @@ payload:
   - DOMAIN-SUFFIX,ppkkzz.com
   - DOMAIN-SUFFIX,seagm.com
   - DOMAIN-SUFFIX,lk888.ai
-  - DOMAIN-SUFFIX,gov.cn
 # ntp 服务
   - DOMAIN-SUFFIX,ntp.org
   - DST-PORT,123
@@ -41,21 +40,12 @@ payload:
   - DOMAIN-SUFFIX,feiyangdigital.top
   - DOMAIN-SUFFIX,zbds.top
   - DOMAIN-SUFFIX,lianxiwo.top
-# 游侠
-  - DOMAIN-SUFFIX,llren.com
-  - DOMAIN-SUFFIX,youxia.net
-  - DOMAIN-KEYWORD,youxi
-# 影视工厂
-  - DOMAIN-KEYWORD,ysgc
-  - DOMAIN-SUFFIX,tjihua.com
 # keke1
   - DOMAIN-SUFFIX,keke1.app
   - DOMAIN-SUFFIX,kekys.com
   - DOMAIN-SUFFIX,play-cdn3.com
 # lucky
   - DOMAIN-SUFFIX,lucky.gd
-# KHMD
-  - DOMAIN-SUFFIX,khkj.xyz
 # 123
   - DOMAIN-SUFFIX,beizi.biz
 # via
