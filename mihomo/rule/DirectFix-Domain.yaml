@@ -101,8 +101,6 @@ payload:
   - DOMAIN-KEYWORD,yyms5
 # 机场
   - DOMAIN-SUFFIX,yuetoto.net
-# 直播源论坛
-  - DOMAIN-SUFFIX,livecodes.vip
 # PT站
   - DOMAIN-SUFFIX,pterclub.net
 #
