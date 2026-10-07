@@ -61,13 +61,11 @@ payload:
 # via
   - DOMAIN-SUFFIX,viayoo.com
 # 三星
-  - DOMAIN-KEYWORD,galaxyappstore
+  - DOMAIN-SUFFIX,galaxyappstore.com
   - DOMAIN-SUFFIX,samsungapps.com
 # 适配音乐
   - DOMAIN-SUFFIX,fxh1.com
   - DOMAIN-SUFFIX,90nw.com
-# 555电影
-  - DOMAIN-KEYWORD,ryplay
 # 肥羊
   - DOMAIN,myip.ipip.net
   - DOMAIN,r.inews.qq.com
@@ -87,8 +85,6 @@ payload:
   - DOMAIN-SUFFIX,hardcoremedia.xyz
   - DOMAIN-SUFFIX,ottc.pro
   - DOMAIN-SUFFIX,douzhicloud.site
-# 铜钟音乐
-  - DOMAIN-SUFFIX,whamon.com
 # 小众软件
   - DOMAIN-SUFFIX,appinn.net
 # 支付宝
@@ -101,8 +97,6 @@ payload:
   - DOMAIN-SUFFIX,boxiantech.com
 # 好学文苑网
   - DOMAIN-SUFFIX,hxw.red
-# Xcloudv音乐
-  - DOMAIN-KEYWORD,xcloudv
 # 音乐魔石
   - DOMAIN-KEYWORD,yyms5
 # 机场
