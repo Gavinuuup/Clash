@@ -8,10 +8,14 @@ on:
     branches:
       - main
     paths:
-      - "mihomo/rule/**/*.yaml"
-      - "mihomo/rule/**/*.yml"
-      - "mihomo/rule/**/*.txt"
-      - "mihomo/rule/**/*.list"
+      - "mihomo/rule/domain/**/*.yaml"
+      - "mihomo/rule/domain/**/*.yml"
+      - "mihomo/rule/domain/**/*.txt"
+      - "mihomo/rule/domain/**/*.list"
+      - "mihomo/rule/ip/**/*.yaml"
+      - "mihomo/rule/ip/**/*.yml"
+      - "mihomo/rule/ip/**/*.txt"
+      - "mihomo/rule/ip/**/*.list"
 
   workflow_dispatch:
 
@@ -38,76 +42,76 @@ jobs:
 
           ./mihomocore -v
 
-      - name: Convert all rules to mrs
+      - name: Convert rules to mrs
         run: |
-          set -e
+          set -euo pipefail
 
           RULE_DIR="mihomo/rule"
+          DOMAIN_DIR="$RULE_DIR/domain"
+          IP_DIR="$RULE_DIR/ip"
 
-          find "$RULE_DIR" -type f \
-            \( -name "*.yaml" -o -name "*.yml" -o -name "*.txt" -o -name "*.list" \) \
-            -print0 |
-          while IFS= read -r -d '' file; do
+          # 处理函数：$1=目录  $2=规则类型
+          process_dir() {
+            local dir="$1"
+            local rtype="$2"
 
-            base="${file%.*}"
-            out="${base}.mrs"
-
-            fname_lower=$(basename "$file" | tr '[:upper:]' '[:lower:]')
-
-            # 判断规则类型
-            # 文件名包含 ip / ipcidr -> ipcidr
-            # 文件名包含 domain / domains -> domain
-            if [[ "$fname_lower" == *ipcidr* || "$fname_lower" == *ip* ]]; then
-              rtype="ipcidr"
-            elif [[ "$fname_lower" == *domains* || "$fname_lower" == *domain* ]]; then
-              rtype="domain"
-            else
-              echo "ERROR: Cannot determine rule type for: $file"
-              echo "Please make sure the filename contains domain or ip/ipcidr."
-              exit 1
+            if [[ ! -d "$dir" ]]; then
+              echo "目录不存在，跳过: $dir"
+              return 0
             fi
 
-            # 判断输入格式
-            case "$file" in
-              *.txt|*.list)
-                informat="text"
-                ;;
-              *.yaml|*.yml)
-                informat="yaml"
-                ;;
-              *)
-                echo "ERROR: Unsupported file format: $file"
-                exit 1
-                ;;
-            esac
+            find "$dir" -type f \
+              \( -name "*.yaml" -o -name "*.yml" -o -name "*.txt" -o -name "*.list" \) \
+              -print0 |
+            while IFS= read -r -d '' file; do
 
-            echo "========================================"
-            echo "Processing: $file"
-            echo "Type:       $rtype"
-            echo "Format:     $informat"
-            echo "Output:     $out"
-            echo "========================================"
+              base="${file%.*}"
+              out="${base}.mrs"
 
-            # 使用临时文件作为输入，避免输入输出文件路径问题
-            tmp_in="/tmp/$(basename "$file")"
-            cp "$file" "$tmp_in"
+              # 判断输入格式
+              case "$file" in
+                *.txt|*.list) informat="text" ;;
+                *.yaml|*.yml) informat="yaml" ;;
+                *)
+                  echo "ERROR: Unsupported file format: $file"
+                  exit 1
+                  ;;
+              esac
 
-            ./mihomocore convert-ruleset \
-              "$rtype" \
-              "$informat" \
-              "$tmp_in" \
-              "$out"
+              echo "========================================"
+              echo "Processing: $file"
+              echo "Type:       $rtype"
+              echo "Format:     $informat"
+              echo "Output:     $out"
+              echo "========================================"
 
-            rm -f "$tmp_in"
+              tmp_in="/tmp/$(basename "$file")"
+              cp "$file" "$tmp_in"
 
-          done
+              ./mihomocore convert-ruleset \
+                "$rtype" \
+                "$informat" \
+                "$tmp_in" \
+                "$out"
+
+              rm -f "$tmp_in"
+            done
+          }
+
+          echo "########## 处理 domain 规则 ##########"
+          process_dir "$DOMAIN_DIR" "domain"
+
+          echo "########## 处理 ip 规则 ##########"
+          process_dir "$IP_DIR" "ipcidr"
+
+          echo "########## 完成 ##########"
 
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add mihomo/rule/
+          git add mihomo/rule/domain/ mihomo/rule/ip/ 2>/dev/null || true
 
           if git diff --cached --quiet; then
             echo "No changes to commit."
