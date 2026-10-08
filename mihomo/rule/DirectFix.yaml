@@ -1,0 +1,50 @@
+payload:
+  # blackmatrix7 - ChinaMax.yaml
+  - DOMAIN-KEYWORD,tmall.com
+  - DOMAIN-KEYWORD,alicdn
+  - DOMAIN-KEYWORD,alipay
+  - DOMAIN-KEYWORD,aliyun
+  - DOMAIN-KEYWORD,baidu
+  - DOMAIN-KEYWORD,beplay
+  - DOMAIN-KEYWORD,officecdn
+  - DOMAIN-KEYWORD,taobao
+  - DOMAIN-KEYWORD,bilibili
+  - DOMAIN-KEYWORD,qiyi
+  - DOMAIN-KEYWORD,hnagroup
+  - DOMAIN-KEYWORD,stripe
+  - DOMAIN-KEYWORD,weibo
+  #- DOMAIN-SUFFIX,cn
+  # ntp 服务
+  - DST-PORT,123
+  # 涩涩动漫
+  - DOMAIN-KEYWORD,91acg
+  # 淘宝
+  - DOMAIN-KEYWORD,galsanggame
+  # 音乐魔石
+  - DOMAIN-WILDCARD,yyms*.*
+
+  # 点播源
+  - DOMAIN-WILDCARD,*.dytt*.com
+  - DOMAIN-WILDCARD,*.lzcdn*.com
+  - DOMAIN-KEYWORD,fengbao
+  - DOMAIN-KEYWORD,baofeng
+  - DOMAIN-KEYWORD,jianpianupdate
+  - DOMAIN-KEYWORD,yunso
+  - DOMAIN-KEYWORD,suoniapi
+  - DOMAIN-KEYWORD,tianyiso
+  - DOMAIN-KEYWORD,yinruifei
+  - DOMAIN-KEYWORD,wogg
+  - DOMAIN-KEYWORD,cdnlz22
+  - DOMAIN-KEYWORD,80sgod
+  - DOMAIN-KEYWORD,rrcdnbf2
+  - DOMAIN-KEYWORD,tyyswimg
+  - DOMAIN-KEYWORD,hongniuzy
+  - DOMAIN-KEYWORD,ffzy-play
+  - DOMAIN-KEYWORD,wlcdn
+  - DOMAIN-KEYWORD,play-cdn
+  - DOMAIN-KEYWORD,modujx
+  - DOMAIN-KEYWORD,ffzyread
+  - DOMAIN-KEYWORD,lz-cdn
+  - DOMAIN-KEYWORD,ffzy-online
+  - IP-CIDR,23.237.228.0/24,no-resolve
+  - IP-CIDR,156.238.203.0/24,no-resolve
