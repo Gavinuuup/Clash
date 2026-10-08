@@ -118,7 +118,7 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Auto convert rules to MRS [skip ci]"
+          git commit -m "chore: 自动转换规则 [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
           git push
 
       - name: Cleanup
