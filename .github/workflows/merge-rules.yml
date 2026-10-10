@@ -33,7 +33,7 @@ jobs:
             Direct Gavinuuup \
             mihomo/rule/merge/ChinaMax_Domain.yaml \
             mihomo/rule/merge/DirectFix.yaml \
-            mihomo/rule/merge/Direct.yaml
+            mihomo/rule/domain/Direct.yaml
 
       - name: Merge IP
         run: |
@@ -41,13 +41,13 @@ jobs:
             Direct_IP Gavinuuup \
             mihomo/rule/merge/ChinaMax_IP.yaml \
             mihomo/rule/merge/Direct_IPFix.yaml \
-            mihomo/rule/merge/Direct_IP.yaml
+            mihomo/rule/ip/Direct_IP.yaml
 
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add mihomo/rule/merge/Direct.yaml mihomo/rule/merge/Direct_IP.yaml
+          git add mihomo/rule/domain/Direct.yaml mihomo/rule/ip/Direct_IP.yaml
           if git diff --cached --quiet; then
             echo "No merged change"
             exit 0
