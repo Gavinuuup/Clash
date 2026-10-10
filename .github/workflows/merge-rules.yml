@@ -7,7 +7,7 @@ on:
       - "mihomo/rule/merge/ChinaMax_IP.yaml"
       - "mihomo/rule/merge/DirectFix.yaml"
       - "mihomo/rule/merge/Direct_IPFix.yaml"
-      - "scripts/merge_rules.py"
+      - ".github/workflows/merge_rules.py"
       - ".github/workflows/merge-rules.yml"
   workflow_dispatch:
 
@@ -29,7 +29,7 @@ jobs:
 
       - name: Merge Domain
         run: |
-          python scripts/merge_rules.py \
+          python .github/workflows/merge_rules.py \
             Direct Gavinuuup \
             mihomo/rule/merge/ChinaMax_Domain.yaml \
             mihomo/rule/merge/DirectFix.yaml \
@@ -37,7 +37,7 @@ jobs:
 
       - name: Merge IP
         run: |
-          python scripts/merge_rules.py \
+          python .github/workflows/merge_rules.py \
             Direct_IP Gavinuuup \
             mihomo/rule/merge/ChinaMax_IP.yaml \
             mihomo/rule/merge/Direct_IPFix.yaml \
