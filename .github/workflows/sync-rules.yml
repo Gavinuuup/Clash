@@ -29,7 +29,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add ChinaMax_Domain.yaml ChinaMax_IP.yaml
+          git add mihomo/rule/ChinaMax_Domain.yaml mihomo/rule/ChinaMax_IP.yaml
           
           # 检查文件是否有更新，有更新才提交
           if git diff --staged --quiet; then
