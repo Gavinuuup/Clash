@@ -19,17 +19,17 @@ jobs:
           # 创建目标目录（如果不存在）
           # mkdir -p mihomo/rule
           # 下载规则文件并替换
-          wget -O mihomo/rule/ChinaMax_Domain.yaml \
+          wget -O mihomo/rule/merge/ChinaMax_Domain.yaml \
           https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
 
-          wget -O mihomo/rule/ChinaMax_IP.yaml \
+          wget -O mihomo/rule/merge/ChinaMax_IP.yaml \
           https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_IP.yaml
 
       - name: Commit and push if changed
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add mihomo/rule/ChinaMax_Domain.yaml mihomo/rule/ChinaMax_IP.yaml
+          git add mihomo/rule/merge/ChinaMax_Domain.yaml mihomo/rule/merge/ChinaMax_IP.yaml
           
           # 检查文件是否有更新，有更新才提交
           if git diff --staged --quiet; then
