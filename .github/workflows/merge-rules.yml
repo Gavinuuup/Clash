@@ -52,5 +52,6 @@ jobs:
             echo "No merged change"
             exit 0
           fi
-          git commit -m "chore: rebuild Direct rules"
+          # git commit -m "chore: rebuild Direct rules"
+          git commit -m "chore: rebuild Direct rules [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
           git push
