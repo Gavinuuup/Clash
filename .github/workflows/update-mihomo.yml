@@ -81,7 +81,7 @@ jobs:
         domain \
         yaml \
         ChinaMax_Domain.yaml \
-        mihomo/rule/ChinaMax_Domain.mrs
+        rules/ChinaMax_Domain.mrs
 
 
 
@@ -96,7 +96,7 @@ jobs:
         ipcidr \
         yaml \
         ChinaMax_IP.yaml \
-        mihomo/rule/ChinaMax_IP.mrs
+        rules/ChinaMax_IP.mrs
 
 
 
@@ -122,7 +122,7 @@ jobs:
         git commit -m "chore: 自动同步 ChinaMax MRS 规则 [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
 
 
-        git push
+        git push origin main
 
 
 
