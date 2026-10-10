@@ -32,7 +32,11 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v5
-
+      with:
+        # 1. 跨仓库检出：直接拉取 Mihomo 仓库
+        repository: Gavinuuup/Mihomo
+        token: ${{ secrets.MIHOMO_PAT }}
+        ref: main
 
 
     - name: Download mihomo
@@ -70,7 +74,7 @@ jobs:
 
       run: |
 
-        mkdir -p mihomo/rule
+        mkdir -p rules
 
 
         ./mihomocore convert-ruleset \
@@ -85,7 +89,7 @@ jobs:
 
       run: |
 
-        # mkdir -p mihomo/rule
+        # mkdir -p rules
         
         
         ./mihomocore convert-ruleset \
