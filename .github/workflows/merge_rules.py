@@ -5,6 +5,7 @@
 """
 import sys
 import datetime
+import re
 import yaml
 
 
@@ -13,15 +14,57 @@ class IndentDumper(yaml.Dumper):
         return super().increase_indent(flow, False)
 
 
+# DOMAIN-SUFFIX,x -> +.x（语义等价，安全）
+CONVERT_SUFFIX_TO_PLUS = True
+
+# DOMAIN,x -> x（会变成后缀匹配，注意语义变化）
+CONVERT_DOMAIN_TO_BARE = True
+
+
+def normalize(raw):
+    """把一条规则规整成规范写法，返回 None 表示丢弃。"""
+    s = str(raw).strip()
+
+    if not s or s.startswith("#"):
+        return None
+
+    s = s.rstrip(",").strip()
+    if not s:
+        return None
+
+    if CONVERT_SUFFIX_TO_PLUS:
+        m = re.fullmatch(r"DOMAIN-SUFFIX\s*,\s*(.+)", s, re.IGNORECASE)
+        if m:
+            domain = m.group(1).strip().lstrip("+.")
+            return f"+.{domain}"
+
+    if CONVERT_DOMAIN_TO_BARE:
+        m = re.fullmatch(r"DOMAIN\s*,\s*(.+)", s, re.IGNORECASE)
+        if m:
+            return m.group(1).strip()
+
+    if "," in s:
+        parts = [p.strip() for p in s.split(",")]
+        s = ",".join(parts)
+
+    return s
+
+
 def load_payload(path):
     try:
         with open(path, encoding="utf-8") as f:
             data = yaml.safe_load(f) or {}
         payload = data.get("payload", []) or []
-        return [str(x).strip() for x in payload if str(x).strip()]
     except FileNotFoundError:
         print(f"[warn] not found: {path}, treat as empty")
         return []
+
+    result = []
+    for item in payload:
+        norm = normalize(item)
+        if norm is not None:
+            result.append(norm)
+    return result
 
 
 def main():
