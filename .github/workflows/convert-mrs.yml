@@ -1,0 +1,139 @@
+name: Convert Mihomo Rules to MRS
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "mihomo/rule/domain/**/*.yaml"
+      - "mihomo/rule/domain/**/*.yml"
+      - "mihomo/rule/domain/**/*.txt"
+      - "mihomo/rule/domain/**/*.list"
+      - "mihomo/rule/ip/**/*.yaml"
+      - "mihomo/rule/ip/**/*.yml"
+      - "mihomo/rule/ip/**/*.txt"
+      - "mihomo/rule/ip/**/*.list"
+      - ".github/workflows/convert-mrs.yml"
+
+  workflow_dispatch:
+
+env:
+  MIHOMO_VERSION: v1.19.29
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ---------- 1. 检出源仓库 Clash（拿 YAML 源规则） ----------
+      - name: Checkout Clash
+        uses: actions/checkout@v5
+        with:
+          path: clash-src
+
+      # ---------- 2. 检出目标仓库 Mihomo（MRS 直接写这里） ----------
+      - name: Checkout Mihomo
+        uses: actions/checkout@v5
+        with:
+          repository: Gavinuuup/Mihomo
+          token: ${{ secrets.MIHOMO_PAT }}
+          ref: main
+          path: mihomo-repo
+
+      # ---------- 3. 下载 mihomo 核心 ----------
+      - name: Download mihomo
+        run: |
+          wget -O mihomo.gz \
+            https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-v1-${MIHOMO_VERSION}.gz
+          gzip -dc mihomo.gz > mihomocore
+          chmod +x mihomocore
+          ./mihomocore -v
+
+      # ---------- 4. 扫描并转换，直接输出到 mihomo-repo/rules/{domain,ip} ----------
+      - name: Convert rules to mrs
+        run: |
+          set -euo pipefail
+
+          SRC_ROOT="clash-src/mihomo/rule"
+          DOMAIN_DIR="$SRC_ROOT/domain"
+          IP_DIR="$SRC_ROOT/ip"
+          OUT_ROOT="mihomo-repo/rules"
+
+          mkdir -p "$OUT_ROOT/domain" "$OUT_ROOT/ip"
+
+          process_dir() {
+            local dir="$1"
+            local rtype="$2"
+            local outdir="$3"
+
+            if [[ ! -d "$dir" ]]; then
+              echo "目录不存在，跳过: $dir"
+              return 0
+            fi
+
+            find "$dir" -type f \
+              \( -name "*.yaml" -o -name "*.yml" -o -name "*.txt" -o -name "*.list" \) \
+              -print0 |
+            while IFS= read -r -d '' file; do
+
+              base="$(basename "${file%.*}")"
+              out="$outdir/${base}.mrs"
+
+              case "$file" in
+                *.txt|*.list) informat="text" ;;
+                *.yaml|*.yml) informat="yaml" ;;
+                *)
+                  echo "ERROR: Unsupported file format: $file"
+                  exit 1
+                  ;;
+              esac
+
+              echo "========================================"
+              echo "Processing: $file"
+              echo "Type:       $rtype"
+              echo "Format:     $informat"
+              echo "Output:     $out"
+              echo "========================================"
+
+              ./mihomocore convert-ruleset \
+                "$rtype" \
+                "$informat" \
+                "$file" \
+                "$out"
+            done
+          }
+
+          echo "########## 处理 domain 规则 ##########"
+          process_dir "$DOMAIN_DIR" "domain" "$OUT_ROOT/domain"
+
+          echo "########## 处理 ip 规则 ##########"
+          process_dir "$IP_DIR" "ipcidr" "$OUT_ROOT/ip"
+
+          echo "########## 转换完成，产物列表 ##########"
+          find "$OUT_ROOT" -type f -name "*.mrs"
+
+      # ---------- 5. 提交推送到 Mihomo ----------
+      - name: Commit and push to Mihomo
+        working-directory: mihomo-repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add rules/domain rules/ip
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: 自动转换规则 [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
+          git push origin main
+
+      # ---------- 6. 清理 ----------
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -f mihomo.gz mihomocore
