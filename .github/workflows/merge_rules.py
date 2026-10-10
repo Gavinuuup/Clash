@@ -8,6 +8,11 @@ import datetime
 import yaml
 
 
+class IndentDumper(yaml.Dumper):
+    def increase_indent(self, flow=False, indentless=False):
+        return super().increase_indent(flow, False)
+
+
 def load_payload(path):
     try:
         with open(path, encoding="utf-8") as f:
@@ -29,7 +34,6 @@ def main():
     base = load_payload(base_path)
     custom = load_payload(custom_path)
 
-    # 合并 + 去重，保持顺序：上游在前，自定义在后
     seen = set()
     merged = []
     for item in base + custom:
@@ -37,7 +41,7 @@ def main():
             seen.add(item)
             merged.append(item)
 
-    updated = datetime.datetime.utcnow() + datetime.timedelta(hours=8)  # 北京时间
+    updated = datetime.datetime.utcnow() + datetime.timedelta(hours=8)
     updated_str = updated.strftime("%Y-%m-%d %H:%M:%S")
 
     header = (
@@ -49,16 +53,18 @@ def main():
         f"# CUSTOM: {len(custom)}\n"
     )
 
+    body = yaml.dump(
+        {"payload": merged},
+        Dumper=IndentDumper,
+        allow_unicode=True,
+        sort_keys=False,
+        default_flow_style=False,
+        width=10**6,
+    )
+
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(header)
-        yaml.safe_dump(
-            {"payload": merged},
-            f,
-            allow_unicode=True,
-            sort_keys=False,
-            default_flow_style=False,
-            width=10**6,
-        )
+        f.write(body)
 
     print(f"[ok] {out_path}: base={len(base)} custom={len(custom)} total={len(merged)}")
 
