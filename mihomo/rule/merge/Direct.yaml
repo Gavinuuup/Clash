@@ -1,9 +1,9 @@
 # NAME: Direct
 # AUTHOR: Gavinuuup
-# UPDATED: 2026-10-10 18:06:49
-# TOTAL: 111961
+# UPDATED: 2026-10-10 18:09:10
+# TOTAL: 111960
 # BASE: 111893
-# CUSTOM: 68
+# CUSTOM: 67
 payload:
   - cpro.baidustatic.com
   - analytics.strava.com
@@ -111899,7 +111899,6 @@ payload:
   - +.wuzhii.com
   - +.xiaoma.io
   - DOMAIN-SUFFIX,41319.shop
-  - DOMAIN-SUFFIX,frlotus.ggff.net
   - DOMAIN-SUFFIX,hhiec.com
   - DOMAIN-SUFFIX,zbiptv.com
   - DOMAIN-SUFFIX,52kukan.net
