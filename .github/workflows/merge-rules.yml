@@ -1,0 +1,56 @@
+name: Merge Rules
+
+on:
+  push:
+    paths:
+      - "mihomo/rule/merge/ChinaMax_Domain.yaml"
+      - "mihomo/rule/merge/ChinaMax_IP.yaml"
+      - "mihomo/rule/merge/DirectFix.yaml"
+      - "mihomo/rule/merge/Direct_IPFix.yaml"
+      - "scripts/merge_rules.py"
+      - ".github/workflows/merge-rules.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install deps
+        run: pip install pyyaml
+
+      - name: Merge Domain
+        run: |
+          python scripts/merge_rules.py \
+            Direct Gavinuuup \
+            mihomo/rule/merge/ChinaMax_Domain.yaml \
+            mihomo/rule/merge/DirectFix.yaml \
+            mihomo/rule/merge/Direct.yaml
+
+      - name: Merge IP
+        run: |
+          python scripts/merge_rules.py \
+            Direct_IP Gavinuuup \
+            mihomo/rule/merge/ChinaMax_IP.yaml \
+            mihomo/rule/merge/Direct_IPFix.yaml \
+            mihomo/rule/merge/Direct_IP.yaml
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mihomo/rule/merge/Direct.yaml mihomo/rule/merge/Direct_IP.yaml
+          if git diff --cached --quiet; then
+            echo "No merged change"
+            exit 0
+          fi
+          git commit -m "chore: rebuild Direct rules"
+          git push
