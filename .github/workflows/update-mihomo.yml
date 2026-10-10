@@ -109,7 +109,7 @@ jobs:
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
 
-        git add mihomo/rule/
+        git add rules/
 
 
         git diff --cached --quiet && exit 0
