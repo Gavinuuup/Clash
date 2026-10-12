@@ -7,6 +7,11 @@ on:
   push:
     branches:
       - main
+  workflow_run:
+    workflows: ["Merge Rules", "Convert YAML to List"]
+    types:
+      - completed
+    
     paths:
       - "rules/domain/**/*.yaml"
       - "rules/domain/**/*.yml"
