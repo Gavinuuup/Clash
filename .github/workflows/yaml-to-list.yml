@@ -1,0 +1,54 @@
+name: Convert YAML to List
+
+on:
+  push:
+    paths:
+      - "rules/merge/DirectFix.yaml"
+      - "rules/merge/Direct_IPFix.yaml"
+      - ".github/workflows/yaml_to_list.py"
+      - ".github/workflows/yaml-to-list.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rules-push
+  cancel-in-progress: false
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.x"
+
+      - name: Install deps
+        run: pip install pyyaml
+
+      - name: Convert DirectFix.yaml -> DirectFix.list
+        run: |
+          python .github/workflows/yaml_to_list.py \
+            rules/merge/DirectFix.yaml \
+            rules/domain/DirectFix.list
+
+      - name: Convert Direct_IPFix.yaml -> Direct_IPFix.list
+        run: |
+          python .github/workflows/yaml_to_list.py \
+            rules/merge/Direct_IPFix.yaml \
+            rules/ip/Direct_IPFix.list
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rules/domain/DirectFix.list rules/ip/Direct_IPFix.list
+          if git diff --cached --quiet; then
+            echo "No change"
+            exit 0
+          fi
+          git commit -m "chore: rebuild DirectFix list [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
+          git push
