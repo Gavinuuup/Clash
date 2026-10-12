@@ -1,4 +1,4 @@
-name: Convert Mihomo Rules to MRS 2
+name: Convert Mihomo Rules to MRS
 
 permissions:
   contents: write
@@ -8,14 +8,14 @@ on:
     branches:
       - main
     paths:
-      - "mihomo/rule/domain/**/*.yaml"
-      - "mihomo/rule/domain/**/*.yml"
-      - "mihomo/rule/domain/**/*.txt"
-      - "mihomo/rule/domain/**/*.list"
-      - "mihomo/rule/ip/**/*.yaml"
-      - "mihomo/rule/ip/**/*.yml"
-      - "mihomo/rule/ip/**/*.txt"
-      - "mihomo/rule/ip/**/*.list"
+      - "rules/domain/**/*.yaml"
+      - "rules/domain/**/*.yml"
+      - "rules/domain/**/*.txt"
+      - "rules/domain/**/*.list"
+      - "rules/ip/**/*.yaml"
+      - "rules/ip/**/*.yml"
+      - "rules/ip/**/*.txt"
+      - "rules/ip/**/*.list"
       - ".github/workflows/convert-mrs.yml"
 
   workflow_dispatch:
@@ -28,13 +28,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ---------- 1. 检出源仓库 Clash（拿 YAML 源规则） ----------
-      - name: Checkout Clash
-        uses: actions/checkout@v5
-        with:
-          path: clash-src
-
-      # ---------- 2. 检出目标仓库 Mihomo（MRS 直接写这里） ----------
+      # ---------- 1. 检出目标仓库 Mihomo（源和产物都在这里） ----------
       - name: Checkout Mihomo
         uses: actions/checkout@v5
         with:
@@ -43,7 +37,7 @@ jobs:
           ref: main
           path: mihomo-repo
 
-      # ---------- 3. 下载 mihomo 核心 ----------
+      # ---------- 2. 下载 mihomo 核心 ----------
       - name: Download mihomo
         run: |
           wget -O mihomo.gz \
@@ -52,22 +46,20 @@ jobs:
           chmod +x mihomocore
           ./mihomocore -v
 
-      # ---------- 4. 扫描并转换，直接输出到 mihomo-repo/rules/{domain,ip} ----------
+      # ---------- 3. 扫描并转换，输出到 mihomo-repo/rules/{domain,ip} ----------
       - name: Convert rules to mrs
         run: |
           set -euo pipefail
 
-          SRC_ROOT="clash-src/mihomo/rule"
+          SRC_ROOT="mihomo-repo/rules"
           DOMAIN_DIR="$SRC_ROOT/domain"
           IP_DIR="$SRC_ROOT/ip"
-          OUT_ROOT="mihomo-repo/rules"
 
-          mkdir -p "$OUT_ROOT/domain" "$OUT_ROOT/ip"
+          mkdir -p "$DOMAIN_DIR" "$IP_DIR"
 
           process_dir() {
             local dir="$1"
             local rtype="$2"
-            local outdir="$3"
 
             if [[ ! -d "$dir" ]]; then
               echo "目录不存在，跳过: $dir"
@@ -80,7 +72,7 @@ jobs:
             while IFS= read -r -d '' file; do
 
               base="$(basename "${file%.*}")"
-              out="$outdir/${base}.mrs"
+              out="$dir/${base}.mrs"
 
               case "$file" in
                 *.txt|*.list) informat="text" ;;
@@ -107,15 +99,15 @@ jobs:
           }
 
           echo "########## 处理 domain 规则 ##########"
-          process_dir "$DOMAIN_DIR" "domain" "$OUT_ROOT/domain"
+          process_dir "$DOMAIN_DIR" "domain"
 
           echo "########## 处理 ip 规则 ##########"
-          process_dir "$IP_DIR" "ipcidr" "$OUT_ROOT/ip"
+          process_dir "$IP_DIR" "ipcidr"
 
           echo "########## 转换完成，产物列表 ##########"
-          find "$OUT_ROOT" -type f -name "*.mrs"
+          find "$SRC_ROOT" -type f -name "*.mrs"
 
-      # ---------- 5. 提交推送到 Mihomo ----------
+      # ---------- 4. 提交推送到 Mihomo ----------
       - name: Commit and push to Mihomo
         working-directory: mihomo-repo
         run: |
@@ -132,7 +124,7 @@ jobs:
           git commit -m "chore: 自动转换规则 [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
           git push origin main
 
-      # ---------- 6. 清理 ----------
+      # ---------- 5. 清理 ----------
       - name: Cleanup
         if: always()
         run: |
