@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - "rules/merge/DirectFix.yaml"
-      #- "rules/merge/Direct_IPFix.yaml"
+      # - "rules/merge/Direct_IPFix.yaml"
       - ".github/workflows/yaml_to_list.py"
       - ".github/workflows/yaml-to-list.yml"
   workflow_dispatch:
@@ -35,11 +35,11 @@ jobs:
             rules/merge/DirectFix.yaml \
             rules/domain/DirectFix.list
 
-      #- name: Convert Direct_IPFix.yaml -> Direct_IPFix.list
-       # run: |
-         # python .github/workflows/yaml_to_list.py \
-           # rules/merge/Direct_IPFix.yaml \
-           # rules/ip/Direct_IPFix.list
+      # - name: Convert Direct_IPFix.yaml -> Direct_IPFix.list
+      #   run: |
+      #     python .github/workflows/yaml_to_list.py \
+      #       rules/merge/Direct_IPFix.yaml \
+      #       rules/ip/Direct_IPFix.list
 
       - name: Commit if changed
         run: |
@@ -51,4 +51,15 @@ jobs:
             exit 0
           fi
           git commit -m "chore: rebuild DirectFix list [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
-          git push
+
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "push ok"
+              exit 0
+            fi
+            echo "push failed, retry $i ..."
+            git pull --rebase origin main || true
+            sleep 5
+          done
+          echo "push failed after retries"
+          exit 1
