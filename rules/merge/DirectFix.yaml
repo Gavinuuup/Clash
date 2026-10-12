@@ -55,8 +55,6 @@ payload:
   - DOMAIN-SUFFIX,douzhicloud.site
 # 小众软件
   - DOMAIN-SUFFIX,appinn.net
-# 好学文苑网
-  - DOMAIN-SUFFIX,hxw.red
 # PT站
   - DOMAIN-SUFFIX,pterclub.net
 # 云盘类
