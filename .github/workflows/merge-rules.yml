@@ -3,10 +3,10 @@ name: Merge Rules
 on:
   push:
     paths:
-      - "mihomo/rule/merge/ChinaMax_Domain.yaml"
-      - "mihomo/rule/merge/ChinaMax_IP.yaml"
-      - "mihomo/rule/merge/DirectFix.yaml"
-      - "mihomo/rule/merge/Direct_IPFix.yaml"
+      - "rules/merge/ChinaMax_Domain.yaml"
+      - "rules/merge/ChinaMax_IP.yaml"
+      - "rules/merge/DirectFix.yaml"
+      - "rules/merge/Direct_IPFix.yaml"
       - ".github/workflows/merge_rules.py"
       - ".github/workflows/merge-rules.yml"
   workflow_dispatch:
@@ -31,23 +31,23 @@ jobs:
         run: |
           python .github/workflows/merge_rules.py \
             Direct Gavinuuup \
-            mihomo/rule/merge/ChinaMax_Domain.yaml \
-            mihomo/rule/merge/DirectFix.yaml \
-            mihomo/rule/domain/Direct.yaml
+            rules/merge/ChinaMax_Domain.yaml \
+            rules/merge/DirectFix.yaml \
+            rules/domain/Direct.yaml
 
       - name: Merge IP
         run: |
           python .github/workflows/merge_rules.py \
             Direct_IP Gavinuuup \
-            mihomo/rule/merge/ChinaMax_IP.yaml \
-            mihomo/rule/merge/Direct_IPFix.yaml \
-            mihomo/rule/ip/Direct_IP.yaml
+            rules/merge/ChinaMax_IP.yaml \
+            rules/merge/Direct_IPFix.yaml \
+            rules/ip/Direct_IP.yaml
 
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add mihomo/rule/domain/Direct.yaml mihomo/rule/ip/Direct_IP.yaml
+          git add rules/domain/Direct.yaml rules/ip/Direct_IP.yaml
           if git diff --cached --quiet; then
             echo "No merged change"
             exit 0
