@@ -1,9 +1,9 @@
 # NAME: Direct
 # AUTHOR: Gavinuuup
-# UPDATED: 2026-10-12 22:00:41
-# TOTAL: 111950
+# UPDATED: 2026-10-12 22:24:43
+# TOTAL: 111949
 # BASE: 111893
-# CUSTOM: 66
+# CUSTOM: 65
 payload:
   - cpro.baidustatic.com
   - analytics.strava.com
@@ -111914,7 +111914,6 @@ payload:
   - +.feiyangdigital.top
   - +.zbds.top
   - +.lianxiwo.top
-  - +.ntp.org
   - +.gh-proxy.com
   - +.keke1.app
   - +.kekys.com
