@@ -7,11 +7,6 @@ on:
   push:
     branches:
       - main
-  workflow_run:
-    workflows: ["Merge Rules", "Convert YAML to List"]
-    types:
-      - completed
-    
     paths:
       - "rules/domain/**/*.yaml"
       - "rules/domain/**/*.yml"
@@ -21,6 +16,11 @@ on:
       - "rules/ip/**/*.yml"
       - "rules/ip/**/*.txt"
       - "rules/ip/**/*.list"
+
+  workflow_run:
+    workflows: ["Merge Rules", "Convert YAML to List"]
+    types:
+      - completed
 
   workflow_dispatch:
 
@@ -59,7 +59,6 @@ jobs:
           DOMAIN_DIR="$RULE_DIR/domain"
           IP_DIR="$RULE_DIR/ip"
 
-          # 处理函数：$1=目录  $2=规则类型
           process_dir() {
             local dir="$1"
             local rtype="$2"
@@ -77,7 +76,6 @@ jobs:
               base="${file%.*}"
               out="${base}.mrs"
 
-              # 判断输入格式
               case "$file" in
                 *.txt|*.list) informat="text" ;;
                 *.yaml|*.yml) informat="yaml" ;;
