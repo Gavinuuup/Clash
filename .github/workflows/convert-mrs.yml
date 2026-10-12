@@ -19,6 +19,10 @@ on:
 
   workflow_dispatch:
 
+concurrency:
+  group: rules-push
+  cancel-in-progress: false
+
 env:
   MIHOMO_VERSION: v1.19.29
 
@@ -118,10 +122,19 @@ jobs:
             exit 0
           fi
 
-          # git commit -m "Auto convert rules to MRS [skip ci]"
-          # 时间戳
           git commit -m "chore: 自动转换规则 [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
-          git push
+
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "push ok"
+              exit 0
+            fi
+            echo "push failed, retry $i ..."
+            git pull --rebase origin main || true
+            sleep 5
+          done
+          echo "push failed after retries"
+          exit 1
 
       - name: Cleanup
         if: always()
