@@ -1,9 +1,9 @@
 # NAME: Direct
 # AUTHOR: Gavinuuup
-# UPDATED: 2026-10-12 22:24:43
-# TOTAL: 111949
+# UPDATED: 2026-10-12 22:45:19
+# TOTAL: 111948
 # BASE: 111893
-# CUSTOM: 65
+# CUSTOM: 64
 payload:
   - cpro.baidustatic.com
   - analytics.strava.com
@@ -111931,7 +111931,6 @@ payload:
   - +.alimama.com
   - +.tanwuya.com
   - +.boxiantech.com
-  - +.ecoo.top
   - +.nianyin.com
   - +.iill.top
   - +.hardcoremedia.xyz
