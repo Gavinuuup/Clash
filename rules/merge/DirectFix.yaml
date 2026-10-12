@@ -75,7 +75,7 @@ payload:
 # 优6壁纸
   - DOMAIN-SUFFIX,youliu.cc
 # deepseek
-  - DOMAIN-SUFFIX,yunyudown.com
+#  - DOMAIN-SUFFIX,yunyudown.com
 # 哈基米纪念日
   - DOMAIN-SUFFIX,laowaidrivetest.com
   - DOMAIN-SUFFIX,getui.com
