@@ -1,9 +1,9 @@
 # NAME: Direct
 # AUTHOR: Gavinuuup
-# UPDATED: 2026-10-12 22:45:19
-# TOTAL: 111948
+# UPDATED: 2026-10-13 00:34:14
+# TOTAL: 111947
 # BASE: 111893
-# CUSTOM: 64
+# CUSTOM: 63
 payload:
   - cpro.baidustatic.com
   - analytics.strava.com
@@ -111937,7 +111937,6 @@ payload:
   - +.ottc.pro
   - +.douzhicloud.site
   - +.appinn.net
-  - +.hxw.red
   - +.pterclub.net
   - +.qileso.com
   - +.xiaotusoso.com
