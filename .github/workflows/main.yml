@@ -1,4 +1,4 @@
-name: Move Directory
+name: Fix Directory
 
 on:
   workflow_dispatch:
@@ -11,10 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Move
+
+      - name: Move rules/rule/* to rules/
         run: |
+          set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git mv mihomo/rule rules
-          git commit -m "refactor: move mihomo/rule to rules"
+
+          shopt -s dotglob nullglob
+          for item in rules/rule/*; do
+            git mv "$item" rules/
+          done
+
+          # 删除空的 rules/rule 目录（git 不跟踪空目录，若还有残留文件会保留）
+          rmdir rules/rule 2>/dev/null || true
+
+          git commit -m "refactor: flatten rules/rule into rules/"
           git push
