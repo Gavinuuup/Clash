@@ -16,7 +16,6 @@ on:
       - "rules/ip/**/*.yml"
       - "rules/ip/**/*.txt"
       - "rules/ip/**/*.list"
-      - ".github/workflows/convert-mrs.yml"
 
   workflow_dispatch:
 
@@ -28,35 +27,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ---------- 1. 检出目标仓库 Mihomo（源和产物都在这里） ----------
-      - name: Checkout Mihomo
+      - name: Checkout
         uses: actions/checkout@v5
         with:
-          repository: Gavinuuup/Mihomo
-          token: ${{ secrets.MIHOMO_PAT }}
-          ref: main
-          path: mihomo-repo
+          fetch-depth: 0
 
-      # ---------- 2. 下载 mihomo 核心 ----------
       - name: Download mihomo
         run: |
           wget -O mihomo.gz \
             https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-v1-${MIHOMO_VERSION}.gz
+
           gzip -dc mihomo.gz > mihomocore
           chmod +x mihomocore
+
           ./mihomocore -v
 
-      # ---------- 3. 扫描并转换，输出到 mihomo-repo/rules/{domain,ip} ----------
       - name: Convert rules to mrs
         run: |
           set -euo pipefail
 
-          SRC_ROOT="mihomo-repo/rules"
-          DOMAIN_DIR="$SRC_ROOT/domain"
-          IP_DIR="$SRC_ROOT/ip"
+          RULE_DIR="rules"
+          DOMAIN_DIR="$RULE_DIR/domain"
+          IP_DIR="$RULE_DIR/ip"
 
-          mkdir -p "$DOMAIN_DIR" "$IP_DIR"
-
+          # 处理函数：$1=目录  $2=规则类型
           process_dir() {
             local dir="$1"
             local rtype="$2"
@@ -71,9 +65,10 @@ jobs:
               -print0 |
             while IFS= read -r -d '' file; do
 
-              base="$(basename "${file%.*}")"
-              out="$dir/${base}.mrs"
+              base="${file%.*}"
+              out="${base}.mrs"
 
+              # 判断输入格式
               case "$file" in
                 *.txt|*.list) informat="text" ;;
                 *.yaml|*.yml) informat="yaml" ;;
@@ -90,11 +85,16 @@ jobs:
               echo "Output:     $out"
               echo "========================================"
 
+              tmp_in="/tmp/$(basename "$file")"
+              cp "$file" "$tmp_in"
+
               ./mihomocore convert-ruleset \
                 "$rtype" \
                 "$informat" \
-                "$file" \
+                "$tmp_in" \
                 "$out"
+
+              rm -f "$tmp_in"
             done
           }
 
@@ -104,28 +104,27 @@ jobs:
           echo "########## 处理 ip 规则 ##########"
           process_dir "$IP_DIR" "ipcidr"
 
-          echo "########## 转换完成，产物列表 ##########"
-          find "$SRC_ROOT" -type f -name "*.mrs"
+          echo "########## 完成 ##########"
 
-      # ---------- 4. 提交推送到 Mihomo ----------
-      - name: Commit and push to Mihomo
-        working-directory: mihomo-repo
+      - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add rules/domain rules/ip
+          git add rules/domain/ rules/ip/ 2>/dev/null || true
 
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
 
+          # git commit -m "Auto convert rules to MRS [skip ci]"
+          # 时间戳
           git commit -m "chore: 自动转换规则 [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
-          git push origin main
+          git push
 
-      # ---------- 5. 清理 ----------
       - name: Cleanup
         if: always()
         run: |
-          rm -f mihomo.gz mihomocore
+          rm -f mihomo.gz
+          rm -f mihomocore
