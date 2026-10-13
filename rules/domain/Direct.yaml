@@ -1,9 +1,9 @@
 # NAME: Direct
 # AUTHOR: Gavinuuup
-# UPDATED: 2026-10-13 00:57:42
-# TOTAL: 111947
+# UPDATED: 2026-10-13 14:31:59
+# TOTAL: 111946
 # BASE: 111893
-# CUSTOM: 63
+# CUSTOM: 62
 payload:
   - cpro.baidustatic.com
   - analytics.strava.com
@@ -111911,7 +111911,6 @@ payload:
   - +.lk888.ai
   - +.reflix.top
   - +.snfaka.com
-  - +.feiyangdigital.top
   - +.zbds.top
   - +.lianxiwo.top
   - +.gh-proxy.com
