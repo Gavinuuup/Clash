@@ -1,11 +1,16 @@
 name: Sync Mihomo Rule
 
+permissions:
+  contents: write
+
 on:
   schedule:
-    # 每天 UTC 0:00（北京时间早上 9:00）自动运行
     - cron: '0 1 * * *'
-  # 支持在 GitHub 页面手动触发运行
   workflow_dispatch:
+
+concurrency:
+  group: rules-push
+  cancel-in-progress: false
 
 jobs:
   sync:
@@ -16,26 +21,34 @@ jobs:
 
       - name: Download rule file
         run: |
-          # 创建目标目录（如果不存在）
-          # mkdir -p rules
-          # 下载规则文件并替换
           wget -O rules/merge/ChinaMax_Domain.yaml \
-          https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
 
           wget -O rules/merge/ChinaMax_IP.yaml \
-          https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_IP.yaml
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_IP.yaml
 
       - name: Commit and push if changed
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+
           git add rules/merge/ChinaMax_Domain.yaml rules/merge/ChinaMax_IP.yaml
-          
-          # 检查文件是否有更新，有更新才提交
+
           if git diff --staged --quiet; then
             echo "规则没有变化，无需提交。"
-          else
-            # git commit -m "chore: 自动下载规则 [$(date +'%Y-%m-%d %H:%M:%S')]"
-            git commit -m "chore: 自动下载规则 [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
-            git push
+            exit 0
           fi
+
+          git commit -m "chore: 自动下载规则 [$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M:%S')]"
+
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "push ok"
+              exit 0
+            fi
+            echo "push failed, retry $i ..."
+            git pull --rebase origin main || true
+            sleep 5
+          done
+          echo "push failed after retries"
+          exit 1
