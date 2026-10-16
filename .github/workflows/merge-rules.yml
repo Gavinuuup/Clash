@@ -9,6 +9,12 @@ on:
       - "rules/merge/Direct_IPFix.yaml"
       - ".github/workflows/merge_rules.py"
       - ".github/workflows/merge-rules.yml"
+
+  workflow_run:
+    workflows: ["Sync Mihomo Rule"]
+    types:
+      - completed
+
   workflow_dispatch:
 
 permissions:
