@@ -17,6 +17,9 @@ payload:
   - DOMAIN-SUFFIX,zbds.top
   - DOMAIN-SUFFIX,lianxiwo.top
   - DOMAIN-SUFFIX,openappfilter.com
+# 天气服务(大部分需要ip定位，所以必须加ipinfo)
+  # - DOMAIN-SUFFIX,open-meteo.com
+  # - DOMAIN-SUFFIX,ipinfo.io
 # github 直连镜像
   - DOMAIN-SUFFIX,gh-proxy.com
 # keke1
@@ -90,5 +93,3 @@ payload:
   - DOMAIN-SUFFIX,70kz.com
 # 555影视
   - DOMAIN-SUFFIX,555k06.com
-# 天气 api
-  - DOMAIN,api.open-meteo.com
