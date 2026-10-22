@@ -1,9 +1,9 @@
 # NAME: Direct
 # AUTHOR: Gavinuuup
-# UPDATED: 2026-10-22 00:46:39
-# TOTAL: 110801
+# UPDATED: 2026-10-22 10:06:52
+# TOTAL: 110802
 # BASE: 110746
-# CUSTOM: 65
+# CUSTOM: 66
 payload:
   - cpro.baidustatic.com
   - analytics.strava.com
@@ -110806,3 +110806,4 @@ payload:
   - +.66office.com
   - +.70kz.com
   - +.555k06.com
+  - api.open-meteo.com
